@@ -13,7 +13,7 @@ const Card = ({ id, name, title }) => (
 
 export default Card;
 
-const StyledCard = styled.div`
+export const StyledCard = styled.div`
   max-width: 320px;
   min-width: 280px;
   padding: 10px;

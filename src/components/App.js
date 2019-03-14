@@ -62,7 +62,9 @@ class App extends Component {
           <GlobalStyle />
           <div className="App">
             <header className="App-header">
-              <p>Smoelenboek</p>
+              <Link to={`/`}>
+                <p>Smoelenboek</p>
+              </Link>
             </header>
             <Switch>
               <Route exact path="/" component={CardsList} />

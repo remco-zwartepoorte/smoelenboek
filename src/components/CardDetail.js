@@ -8,18 +8,11 @@ class CardDetail extends Component {
   };
 
   componentDidMount = () => {
-    const cachedSmoelen = localStorage.getItem('myData');
-    if (cachedSmoelen) {
-      // console.log(JSON.parse(cachedSmoelen));
-      const smoel = JSON.parse(cachedSmoelen);
-      console.log(smoel.smoelen);
-      const juisteSmoel = smoel.smoelen.find(
-        el => el.id == this.props.match.params.id
-      );
-      console.log(juisteSmoel);
-      this.setState({ smoel: juisteSmoel });
-      console.log(this.props.match.params.id);
-    }
+    const cachedSmoelen = JSON.parse(localStorage.getItem('myData')) || [];
+    const smoel = cachedSmoelen.smoelen.find(
+      el => el.id == this.props.match.params.id
+    );
+    this.setState({ smoel: smoel });
   };
 
   render() {

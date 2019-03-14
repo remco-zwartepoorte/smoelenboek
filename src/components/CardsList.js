@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Card from './Card';
+import AddCard from './AddCard';
 
 class CardsList extends Component {
   state = {
@@ -44,6 +45,7 @@ class CardsList extends Component {
             title={smoel.title}
           />
         ))}
+        <AddCard />
       </CardGrid>
     );
   }
