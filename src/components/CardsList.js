@@ -1,51 +1,24 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Card from './Card';
-import AddCard from './AddCard';
+import EmptyCard from './EmptyCard';
 
 class CardsList extends Component {
-  state = {
-    smoelen: [
-      {
-        id: 1,
-        name: 'Jeroen Zwartepoorte',
-        dateofbirth: '21-07-1977',
-        title: 'Front-end engineer',
-        bio: 'Oudste'
-      },
-      {
-        id: 2,
-        name: 'Remco Zwartepoorte',
-        dateofbirth: '21-09-1979',
-        title: 'Front-end engineer',
-        bio: 'Middelste'
-      },
-      {
-        id: 3,
-        name: 'Sander Zwartepoorte',
-        dateofbirth: '24-05-1981',
-        title: 'Designer',
-        bio: 'Jongste'
-      }
-    ]
-  };
-
-  componentDidMount = () => {
-    localStorage.setItem('myData', JSON.stringify(this.state));
-  };
-
   render() {
+    const { people } = this.props;
     return (
       <CardGrid>
-        {this.state.smoelen.map(smoel => (
+        {Object.keys(people).map(key => (
           <Card
-            key={smoel.id}
-            id={smoel.id}
-            name={smoel.name}
-            title={smoel.title}
+            key={key}
+            id={people[key].id}
+            name={people[key].name}
+            title={people[key].title}
+            dateofbirth={people[key].dateofbirth}
+            bio={people[key].bio}
           />
         ))}
-        <AddCard />
+        <EmptyCard />
       </CardGrid>
     );
   }

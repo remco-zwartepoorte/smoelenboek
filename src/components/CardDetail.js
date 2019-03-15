@@ -4,32 +4,34 @@ import { Link } from 'react-router-dom';
 
 class CardDetail extends Component {
   state = {
-    smoel: null
+    person: null
   };
 
   componentDidMount = () => {
-    const cachedSmoelen = JSON.parse(localStorage.getItem('myData')) || [];
-    const smoel = cachedSmoelen.smoelen.find(
-      el => el.id == this.props.match.params.id
-    );
-    this.setState({ smoel: smoel });
+    const person = Object.keys(this.props.people)
+      .map(key => {
+        if (this.props.people[key].name === this.props.match.params.name)
+          return this.props.people[key];
+      })
+      .filter(key => {
+        return key !== undefined;
+      });
+    this.setState({ person: person[0] });
   };
 
   render() {
-    const userId = this.props.match.params.id;
-    const user = this.state.smoel;
-
-    if (user === null) {
+    if (this.state.person === null) {
       return null;
     }
+
     return (
       <StyledCard>
         <h1>Details</h1>
-        <h3>{user.name}</h3>
-        <p>{user.title}</p>
-        <p>{user.dateofbirth}</p>
-        <p>{user.bio}</p>
-        <Link to={`/`}>
+        <h3>{this.state.person.name}</h3>
+        <p>{this.state.person.title}</p>
+        <p>{this.state.person.dateofbirth}</p>
+        <p>{this.state.person.bio}</p>
+        <Link to="/">
           <button>Go back</button>
         </Link>
       </StyledCard>
