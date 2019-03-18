@@ -103,6 +103,18 @@ class App extends Component {
     this.setState({ people });
   };
 
+  updatePerson = (key, updatedPerson) => {
+    const people = { ...this.state.people };
+    people[key] = updatedPerson;
+    this.setState({ people });
+  };
+
+  deletePerson = key => {
+    const people = { ...this.state.people };
+    delete people[key];
+    this.setState({ people });
+  };
+
   render() {
     return (
       <Router>
@@ -135,7 +147,12 @@ class App extends Component {
               <Route
                 path="/:name"
                 render={props => (
-                  <CardDetail {...props} people={this.state.people} />
+                  <CardDetail
+                    {...props}
+                    people={this.state.people}
+                    updatePerson={this.updatePerson}
+                    deletePerson={this.deletePerson}
+                  />
                 )}
               />
             </Switch>
