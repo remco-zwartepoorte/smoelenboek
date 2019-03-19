@@ -13,6 +13,7 @@ class CardsList extends Component {
             key={key}
             id={people[key].id}
             name={people[key].name}
+            image={people[key].image}
             title={people[key].title}
             dateofbirth={people[key].dateofbirth}
             bio={people[key].bio}
@@ -27,8 +28,7 @@ class CardsList extends Component {
 export default CardsList;
 
 const CardGrid = styled.div`
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   padding: 1rem;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1rem;
 `;

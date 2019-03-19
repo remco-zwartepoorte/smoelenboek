@@ -19,7 +19,8 @@ class AddPerson extends Component {
       name: this.nameRef.current.value,
       dateofbirth: this.dateofbirthRef.current.value,
       title: this.titleRef.current.value,
-      bio: this.bioRef.current.value
+      bio: this.bioRef.current.value,
+      image: '/images/user-generic-tile'
     };
     this.props.addPerson(person);
     this.props.history.push('/');

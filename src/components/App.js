@@ -25,24 +25,30 @@ html {
 }
 body {
   font-family: 'Gilroy', '-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Helvetica','Arial','sans-serif','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol', sans-serif;
-  margin: 0;
   padding: 0;
+  margin:0;
+  /* background-color: #f9f9f6; */
+  background-color: #333;
+  color: #333;
+
 }
-code {
-  font-family: 'Gilroy';
-  font-weight: 800;
+
+.App {
+  max-width: 1280px;
+  padding: 0 50px;
+  margin: 0 auto;
+
 }
 
 .App-header {
-  background-color: #282c34;
-  height: 60px;
+  height: 100px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  /* font-size: calc(10px + 2vmin); */
   padding-left: 1rem;
+  color: white;
 }
 
 .App-link {
@@ -53,6 +59,8 @@ a {
   color:inherit;
   text-decoration: none;
  }
+
+
 `;
 
 class App extends Component {
@@ -68,25 +76,26 @@ class App extends Component {
       this.setState({
         people: {
           person1: {
-            id: 1,
-            name: 'Jeroen Zwartepoorte',
-            dateofbirth: '21-07-1977',
-            title: 'Front-end engineer',
-            bio: 'Oudste'
+            name: 'Laura Abels',
+            image: '/images/beautiful-brunette-cute-774909',
+            dateofbirth: '21-07-1988',
+            title: 'Service designer',
+            bio:
+              'Free justice right pious of chaos transvaluation ascetic justice gains of against. Snare marvelous truth strong virtues superiority endless insofar. Christian right god justice law. Ascetic abstract ocean inexpedient christianity convictions noble mountains christian. Will prejudice ultimate of decrepit derive salvation of truth play sea moral reason. Disgust intentions grandeur deceptions pious sea virtues strong justice suicide pious disgust ultimate overcome. Law sexuality ocean spirit strong christianity transvaluation self victorious passion marvelous overcome revaluation. Intentions superiority passion derive endless horror noble grandeur faith strong. Noble passion salvation ultimate holiest reason inexpedient superiority god superiority virtues. Morality oneself play play eternal-return.'
           },
           person2: {
-            id: 2,
-            name: 'Remco Zwartepoorte',
-            dateofbirth: '21-09-1979',
+            name: 'Jeffrey Boot',
+            image: '/images/adult-beard-boy-220453',
+            dateofbirth: '21-09-1984',
             title: 'Front-end engineer',
-            bio: 'Middelste'
+            bio: 'Sexuality love chaos decrepit christian virtues. Endless spirit gains truth ocean truth convictions pinnacle mountains society superiority faith right sexuality. Disgust of ascetic moral inexpedient revaluation revaluation fearful holiest ultimate holiest mountains chaos dead. Inexpedient endless holiest will dead spirit society merciful holiest play law value. Ubermensch suicide spirit holiest self suicide oneself sexuality. Abstract oneself depths marvelous christianity suicide snare deceptions society suicide. Hope faith battle faith evil contradict ultimate. Ultimate strong abstract moral against pious inexpedient reason disgust value hatred faithful. Disgust depths ultimate gains chaos eternal-return christian abstract virtues faithful law right fearful. Chaos insofar god god.'
           },
           person3: {
-            id: 3,
-            name: 'Sander Zwartepoorte',
-            dateofbirth: '24-05-1981',
-            title: 'Designer',
-            bio: 'Jongste'
+            name: 'Daan Cremers',
+            image: '/images/attractive-boy-casual-769690',
+            dateofbirth: '24-05-1985',
+            title: 'Interaction designer',
+            bio: 'Suicide revaluation salvation prejudice depths of morality law. Justice strong ubermensch play philosophy hatred. Overcome derive snare inexpedient revaluation dead. Faith aversion disgust truth spirit contradict decrepit eternal-return revaluation decieve transvaluation. Value disgust abstract depths superiority inexpedient marvelous selfish zarathustra. War ubermensch enlightenment zarathustra against madness law battle. Prejudice passion marvelous marvelous law law law. Overcome justice strong overcome transvaluation faith will mountains victorious ideal ideal. Pious sexuality victorious virtues merciful overcome ultimate hatred marvelous right. Depths philosophy battle mountains chaos derive superiority selfish value holiest. Faithful love insofar intentions mountains gains derive war good sea derive. Selfish society law.'
           }
         }
       });
@@ -123,7 +132,7 @@ class App extends Component {
           <div className="App">
             <header className="App-header">
               <Link to="/">
-                <p>Smoelenboek</p>
+                <h1>Smoelenboek</h1>
               </Link>
             </header>
             <Switch>
