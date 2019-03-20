@@ -36,6 +36,7 @@ body {
 .App {
   max-width: 1280px;
   padding: 0 50px;
+  margin: 0 auto;
 
   @media screen and (max-width: 768px) {
     padding: 0 10px;
@@ -78,28 +79,28 @@ class App extends Component {
       this.setState({
         people: {
           person1: {
-            name: 'Laura Abels',
+            name: 'Tamara Abels',
             image: '/images/beautiful-brunette-cute-774909',
-            dateofbirth: '21-07-1988',
+            dateofbirth: '1988, 21, 07',
             title: 'Service designer',
             bio:
-              'Free justice right pious of chaos transvaluation ascetic justice gains of against. Snare marvelous truth strong virtues superiority endless insofar. Christian right god justice law. Ascetic abstract ocean inexpedient christianity convictions noble mountains christian. Will prejudice ultimate of decrepit derive salvation of truth play sea moral reason. Disgust intentions grandeur deceptions pious sea virtues strong justice suicide pious disgust ultimate overcome. Law sexuality ocean spirit strong christianity transvaluation self victorious passion marvelous overcome revaluation. Intentions superiority passion derive endless horror noble grandeur faith strong. Noble passion salvation ultimate holiest reason inexpedient superiority god superiority virtues. Morality oneself play play eternal-return.'
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sagittis purus sit amet volutpat. Nibh mauris cursus mattis molestie. Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim. Massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin. Lacus luctus accumsan tortor posuere ac ut consequat semper. Vel facilisis volutpat est velit egestas dui. Mauris commodo quis imperdiet massa. Mauris pharetra et ultrices neque ornare aenean euismod. Id aliquet risus feugiat in ante.'
           },
           person2: {
-            name: 'Jeffrey Boot',
+            name: 'Joost Wallenburg',
             image: '/images/adult-beard-boy-220453',
             dateofbirth: '21-09-1984',
             title: 'Front-end engineer',
             bio:
-              'Sexuality love chaos decrepit christian virtues. Endless spirit gains truth ocean truth convictions pinnacle mountains society superiority faith right sexuality. Disgust of ascetic moral inexpedient revaluation revaluation fearful holiest ultimate holiest mountains chaos dead. Inexpedient endless holiest will dead spirit society merciful holiest play law value. Ubermensch suicide spirit holiest self suicide oneself sexuality. Abstract oneself depths marvelous christianity suicide snare deceptions society suicide. Hope faith battle faith evil contradict ultimate. Ultimate strong abstract moral against pious inexpedient reason disgust value hatred faithful. Disgust depths ultimate gains chaos eternal-return christian abstract virtues faithful law right fearful. Chaos insofar god god.'
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim sit amet venenatis urna cursus eget nunc scelerisque viverra. Dignissim sodales ut eu sem integer vitae. Integer eget aliquet nibh praesent. Consectetur purus ut faucibus pulvinar elementum integer. Tellus cras adipiscing enim eu turpis egestas pretium aenean pharetra. Quam adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus urna. Morbi enim nunc faucibus a pellentesque. Pharetra et ultrices neque ornare aenean. Amet luctus venenatis lectus magna fringilla.'
           },
           person3: {
-            name: 'Daan Cremers',
+            name: 'Daan Schuurmans',
             image: '/images/attractive-boy-casual-769690',
             dateofbirth: '24-05-1985',
             title: 'Interaction designer',
             bio:
-              'Suicide revaluation salvation prejudice depths of morality law. Justice strong ubermensch play philosophy hatred. Overcome derive snare inexpedient revaluation dead. Faith aversion disgust truth spirit contradict decrepit eternal-return revaluation decieve transvaluation. Value disgust abstract depths superiority inexpedient marvelous selfish zarathustra. War ubermensch enlightenment zarathustra against madness law battle. Prejudice passion marvelous marvelous law law law. Overcome justice strong overcome transvaluation faith will mountains victorious ideal ideal. Pious sexuality victorious virtues merciful overcome ultimate hatred marvelous right. Depths philosophy battle mountains chaos derive superiority selfish value holiest. Faithful love insofar intentions mountains gains derive war good sea derive. Selfish society law.'
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed adipiscing diam donec adipiscing tristique. Eget mauris pharetra et ultrices neque ornare aenean. Aliquam purus sit amet luctus venenatis lectus magna fringilla urna. Nisi scelerisque eu ultrices vitae auctor eu augue. Varius morbi enim nunc faucibus a pellentesque sit amet porttitor. Aliquam sem fringilla ut morbi tincidunt augue interdum velit. Aliquam ut porttitor leo a diam sollicitudin. Arcu non odio euismod lacinia at quis. Amet justo donec enim diam vulputate.'
           }
         }
       });

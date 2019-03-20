@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { FiEdit, FiArrowLeft, FiGift } from 'react-icons/fi';
+import Moment from 'react-moment';
+import 'moment/locale/nl';
 
 import Icon from './Icon';
 import Background from './Background';
@@ -52,73 +55,90 @@ class CardDetail extends Component {
 
     return (
       <StyledDetails>
-        <Nav>
-          <Link to="/">
-            <Icon name="chevron-left" height="25px" width="25px" color="#333" />
-          </Link>
-          <div>
-            {this.state.editMode ? (
-              <Button onClick={this.savePerson}>Save</Button>
-            ) : (
-              <Button onClick={this.toggleEditMode}>
-                <Icon name="edit" height="25px" width="25px" color="#333" />
-              </Button>
-            )}
-            {/* <Button onClick={this.deletePerson}>
-              <Icon name="delete" height="25px" width="25px" color="#333" />
-            </Button> */}
-          </div>
-        </Nav>
         <Profile>
           <Image>
+            <NavLeft>
+              <StyledLink to="/">
+                <FiArrowLeft />
+              </StyledLink>
+            </NavLeft>
             <img
               src={`${this.state.person.image}.jpg`}
               alt={this.state.person.name}
             />
           </Image>
           <Info>
-            {this.state.editMode ? (
-              <Edit>
-                <label htmlFor="name">Name</label>
-
-                <input
-                  type="text"
-                  name="name"
-                  onChange={this.handleChange}
-                  value={this.state.person.name}
-                />
-                <label htmlFor="dateofbirth">Date of birth</label>
-                <input
-                  type="text"
-                  name="dateofbirth"
-                  onChange={this.handleChange}
-                  value={this.state.person.dateofbirth}
-                />
-                <label htmlFor="title">Title</label>
-                <input
-                  type="text"
-                  name="title"
-                  onChange={this.handleChange}
-                  value={this.state.person.title}
-                />
-                <label htmlFor="bio">Bio</label>
-                <textarea
-                  type="text"
-                  name="bio"
-                  onChange={this.handleChange}
-                  value={this.state.person.bio}
-                />
-              </Edit>
-            ) : (
-              <>
-                <h1>
-                  {this.state.person.name}
-                  <span>{` (${this.state.person.dateofbirth})`}</span>
-                </h1>
-                <h2>{this.state.person.title}</h2>
-                <p>{this.state.person.bio}</p>
-              </>
-            )}
+            <NavRight>
+              {!this.state.editMode && (
+                <IconButton onClick={this.toggleEditMode}>
+                  <FiEdit />
+                </IconButton>
+              )}
+            </NavRight>
+            <Wrapper>
+              {this.state.editMode ? (
+                <Edit>
+                  <label htmlFor="name">Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    onChange={this.handleChange}
+                    value={this.state.person.name}
+                  />
+                  <label htmlFor="dateofbirth">Date of birth</label>
+                  <input
+                    type="text"
+                    name="dateofbirth"
+                    onChange={this.handleChange}
+                    value={this.state.person.dateofbirth}
+                  />
+                  <label htmlFor="title">Title</label>
+                  <input
+                    type="text"
+                    name="title"
+                    onChange={this.handleChange}
+                    value={this.state.person.title}
+                  />
+                  <label htmlFor="bio">Bio</label>
+                  <textarea
+                    type="text"
+                    name="bio"
+                    onChange={this.handleChange}
+                    value={this.state.person.bio}
+                  />
+                  <ButtonGroup>
+                    <div>
+                      <PrimaryButton onClick={this.savePerson}>
+                        Save
+                      </PrimaryButton>
+                      <SecondaryButton onClick={this.savePerson}>
+                        Cancel
+                      </SecondaryButton>
+                    </div>
+                    <div>
+                      <TertiaryButton onClick={this.deletePerson}>
+                        Delete Profile
+                        {/* <Icon name="delete" height="25px" width="25px" color="#333" /> */}
+                      </TertiaryButton>
+                    </div>
+                  </ButtonGroup>
+                </Edit>
+              ) : (
+                <>
+                  <h1>{this.state.person.name}</h1>
+                  <h2>{this.state.person.title}</h2>
+                  <span>
+                    <FiGift />
+                    <Moment
+                      locale="nl"
+                      format="DD MMMM"
+                      date={new Date(this.state.person.dateofbirth)}
+                    />
+                  </span>
+                  <p>{this.state.person.bio}</p>
+                </>
+              )}
+            </Wrapper>
           </Info>
           <Background />
         </Profile>
@@ -131,8 +151,6 @@ export default CardDetail;
 
 const StyledDetails = styled.div`
   width: 100%;
-  /* margin: 10px; */
-  /* padding: 10px; */
   position: relative;
   height: 100%;
   z-index: 1;
@@ -143,61 +161,66 @@ const Profile = styled.div`
   flex-direction: row;
   margin-bottom: 50px;
   position: relative;
+
   @media screen and (max-width: 768px) {
     flex-direction: column;
   }
 `;
 
 const Nav = styled.div`
-  height: 100px;
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 0;
   position: absolute;
   z-index: 10;
-  width: 100%;
+`;
+
+const NavLeft = styled(Nav)`
+  left: 25px;
+  top: 51px;
+`;
+
+const NavRight = styled(Nav)`
+  right: 50px;
+  top: 63px;
 
   @media screen and (max-width: 768px) {
-    margin-top: 60vh;
-  }
-
-  div {
-    margin-right: 35px;
-    @media screen and (max-width: 768px) {
-      margin-right: 10px;
-    }
-  }
-  a {
-    /* width: 50px; */
-    margin-left: 25px;
-    /* padding: 10px; */
+    right: 25px;
+    top: 20px;
   }
 `;
 
 const Info = styled.div`
-  padding: 80px 50px 50px;
   flex: 1;
-
-  @media screen and (max-width: 768px) {
-    padding: 50px 25px 50px;
-  }
+  position: relative;
 
   p {
     line-height: 1.5;
     padding-top: 20px;
   }
-  h1 span {
+  span {
     font-size: 14px;
     font-weight: 300;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+
+    svg {
+      margin-right: 10px;
+      color: #666;
+    }
   }
   h1 {
-    margin-bottom: 0;
+    margin: 0;
     font-size: 48px;
   }
   h2 {
     margin-top: 0;
     font-weight: 300;
+  }
+`;
+
+const Wrapper = styled.div`
+  padding: 80px 50px 50px;
+  @media screen and (max-width: 768px) {
+    padding: 40px 25px 60px;
   }
 `;
 
@@ -211,19 +234,22 @@ const Edit = styled.div`
   input,
   textarea {
     font-size: 16px;
-    /* line-height: 1.23543; */
+    line-height: 1.5;
     font-family: 'Gilroy';
     font-weight: 300;
     display: inline-block;
-    box-sizing: border-box;
-    vertical-align: top;
     width: 100%;
     margin-bottom: 16px;
     padding: 10px;
     color: #333;
     text-align: left;
-    border: 1px solid #d6d6d6;
-    border-radius: 4px;
+    border: 1px solid #efefef;
+    border-radius: 3px;
+
+    :focus {
+      border: 1px solid #b2b2b2;
+      outline: none;
+    }
   }
 
   textarea {
@@ -236,75 +262,108 @@ const Image = styled.figure`
   max-width: 50%;
   flex: 1;
   margin: 0;
+  position: relative;
 
   @media screen and (max-width: 768px) {
     max-width: 100%;
-    /* min-height: 60vh; */
-    /* height: 100%; */
-    /* height: 50vh; */
   }
 
-  img {
+  > img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* min-height: 50vh; */
     filter: grayscale(100%);
     clip-path: polygon(0% 0%, 97.58% 1.66%, 98.49% 98.36%, 0% 100%);
 
     @media screen and (max-width: 768px) {
-      height: 60vh;
+      height: 70vw;
     }
   }
 `;
 
-const Button = styled.button`
-border: none;
-cursor: pointer;
-margin-right: 10px;
-background: none;
-/* background-color: rgb(97, 154, 176);
-width: 3.05882rem;
-height: 3.05882rem;
-border-radius: 3.05882rem;
-font-size: 53px;
-font-weight: normal;
-line-height: 3.05882rem;
-text-align: center; */
-
-:hover {
-svg path {
-  fill: red;
-}
-}
-  /* display: inline-block;
+const StyledLink = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
   position: relative;
-  border: none;
-  font-family: 'Gilroy';
-  font-weight: 800;
-  font-size: 12px;
-  text-decoration: none;
-  color: #fff;
-  background: none;
-  white-space: nowrap;
-  line-height: 40px;
-  height: 100%;
-  margin-left: 10px;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  background-color: rgba(34, 34, 34, 0.2);
+  border-radius: 50%;
+  transition: 250ms background-color linear, 250ms color linear,
+    250ms opacity linear;
 
-  cursor: pointer;
-  :before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    display: block;
-    width: 100%;
-    height: 0;
-    border-left: 3px solid transparent;
-    border-right: 3px solid transparent;
-    border-bottom-style: solid;
-    border-bottom-color: rgb(97, 154, 176);
-    border-bottom-width: 40px; */
+  :hover {
+    background-color: rgba(34, 34, 34, 0.5);
+    svg {
+      color: #fff;
+    }
   }
+
+  svg {
+    height: 1em;
+    width: 1em;
+    transition: 0.2s;
+    color: rgba(255, 255, 255, 0.8);
+  }
+`;
+
+const IconButton = styled.a`
+  border: none;
+  cursor: pointer;
+  background: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+
+  svg {
+    height: 1em;
+    width: 1em;
+    transition: 0.2s;
+    color: #333;
+
+    :hover {
+      color: #619ab0;
+    }
+  }
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+`;
+
+const Button = styled.button`
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 5px 9px;
+  position: relative;
+  text-align: center;
+  width: auto;
+  font-size: 14px;
+  font-weight: 800;
+`;
+
+const PrimaryButton = styled(Button)`
+  background-color: #619ab0;
+  border: 1px solid #619ab0;
+  color: #fff;
+`;
+
+const SecondaryButton = styled(Button)`
+  background-color: #fff;
+  border: 1px solid #d3e5eb;
+  color: #619ab0;
+  margin-left: 10px;
+`;
+
+const TertiaryButton = styled(Button)`
+  border: none;
+  background-color: #fff;
+  color: #619ab0;
+  margin-left: 10px;
 `;
