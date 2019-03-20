@@ -30,5 +30,5 @@ export default CardsList;
 const CardGrid = styled.div`
   display: flex;
   flex-wrap: wrap;
-  padding: 1rem;
+  /* padding: 1rem; */
 `;

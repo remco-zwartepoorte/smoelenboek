@@ -16,7 +16,7 @@ const EmptyCard = ({ id, name, title }) => (
       }}
     >
       <h1>+</h1>
-      <p>Add new</p>
+      <p>Add person</p>
       <Background />
     </StyledCard>
   </Link>
