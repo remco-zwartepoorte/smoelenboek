@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
-// import logo from '../logo.svg';
-// import './App.css';
 import '../fonts/gilroy.css';
 
 import CardDetail from './CardDetail';
 import CardsList from './CardsList';
 import AddPerson from './AddPerson';
+import Background from './Background';
 
 const GlobalStyle = createGlobalStyle`
 html {
@@ -28,15 +27,17 @@ body {
   padding: 0;
   margin:0;
   /* background-color: #f9f9f6; */
+  /* background-color: #619ab0; */
   background-color: #333;
   color: #333;
-
 }
 
-.App {
+.container {
   max-width: 1280px;
   padding: 0 50px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 
   @media screen and (max-width: 768px) {
     padding: 0 10px;
@@ -44,14 +45,18 @@ body {
 }
 
 .App-header {
-  height: 100px;
+  height: 150px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  /* font-size: calc(10px + 2vmin); */
-  padding-left: 1rem;
   color: white;
+  background-color: #333;
+
+  h1, h2 {
+  width: 70vw;
+  color: #333;
+  }
 }
 
 .App-link {
@@ -62,8 +67,6 @@ a {
   color:inherit;
   text-decoration: none;
  }
-
-
 `;
 
 class App extends Component {
@@ -134,12 +137,16 @@ class App extends Component {
       <Router>
         <>
           <GlobalStyle />
-          <div className="App">
-            <header className="App-header">
+          <header className="App-header">
+            <div className="container">
               <Link to="/">
+                {/* <h2>Informaat</h2> */}
                 <h1>Smoelenboek</h1>
               </Link>
-            </header>
+              <Background />
+            </div>
+          </header>
+          <div className="container">
             <Switch>
               <Route
                 exact

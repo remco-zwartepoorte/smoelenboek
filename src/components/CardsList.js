@@ -30,5 +30,6 @@ export default CardsList;
 const CardGrid = styled.div`
   display: flex;
   flex-wrap: wrap;
-  /* padding: 1rem; */
+  margin-top: 20px;
+  justify-content: center;
 `;

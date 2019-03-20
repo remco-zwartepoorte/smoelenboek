@@ -81,7 +81,7 @@ export const StyledCard = styled.div`
   img {
     width: 100%;
     filter: grayscale(100%);
-    clip-path: polygon(0% 0%, 97.58% 1.66%, 99.26% 98.36%, 0% 100%);
+    clip-path: polygon(0% 0%, 98% 4.99%, 99.26% 98.36%, 0% 100%);
   }
   h3 {
     margin-bottom: 0;

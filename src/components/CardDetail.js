@@ -111,14 +111,13 @@ class CardDetail extends Component {
                       <PrimaryButton onClick={this.savePerson}>
                         Save
                       </PrimaryButton>
-                      <SecondaryButton onClick={this.savePerson}>
+                      {/* <SecondaryButton onClick={this.savePerson}>
                         Cancel
-                      </SecondaryButton>
+                      </SecondaryButton> */}
                     </div>
                     <div>
                       <TertiaryButton onClick={this.deletePerson}>
                         Delete Profile
-                        {/* <Icon name="delete" height="25px" width="25px" color="#333" /> */}
                       </TertiaryButton>
                     </div>
                   </ButtonGroup>
@@ -175,6 +174,8 @@ const Nav = styled.div`
 const NavLeft = styled(Nav)`
   left: 25px;
   top: 51px;
+  opacity: 0;
+  transition: 250ms opacity linear;
 `;
 
 const NavRight = styled(Nav)`
@@ -219,12 +220,13 @@ const Info = styled.div`
 
 const Wrapper = styled.div`
   padding: 80px 50px 50px;
+
   @media screen and (max-width: 768px) {
     padding: 40px 25px 60px;
   }
 `;
 
-const Edit = styled.div`
+export const Edit = styled.div`
   label {
     font-weight: 800;
     margin-bottom: 4px;
@@ -266,6 +268,12 @@ const Image = styled.figure`
 
   @media screen and (max-width: 768px) {
     max-width: 100%;
+  }
+
+  :hover {
+    > div {
+      opacity: 1;
+    }
   }
 
   > img {
@@ -348,7 +356,7 @@ const Button = styled.button`
   font-weight: 800;
 `;
 
-const PrimaryButton = styled(Button)`
+export const PrimaryButton = styled(Button)`
   background-color: #619ab0;
   border: 1px solid #619ab0;
   color: #fff;
