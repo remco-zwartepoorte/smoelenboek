@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { createGlobalStyle } from 'styled-components';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import ScrollToTop from './ScrollToTop';
 
 import '../fonts/gilroy.css';
