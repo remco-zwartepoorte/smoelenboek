@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { StyledCard } from './Card';
 import { FiUserPlus } from 'react-icons/fi';
 import styled from 'styled-components';
 

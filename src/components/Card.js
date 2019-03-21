@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FiChevronRight } from 'react-icons/fi';
 
-import Icon from './Icon';
-
 import Background from './Background';
 
 const Card = ({ id, name, image, dateofbirth, title, bio }) => {

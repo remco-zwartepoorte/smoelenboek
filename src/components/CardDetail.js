@@ -15,20 +15,20 @@ class CardDetail extends Component {
     person: null
   };
 
-  componentWillReceiveProps = () => {
-    // const key = Object.keys(this.props.people).find(key => {
-    //   if (this.props.people[key].name === this.props.match.params.name)
-    //     return key;
-    // });
-    // this.setState({ key: key, person: this.props.people[key] });
-
-    this.setState({
-      key: this.props.match.params.id,
-      person: this.props.people[this.props.match.params.id],
-      loading: false
-    });
-    console.log('state updated');
-    console.log(this.props.people[this.props.match.params.id]);
+  componentDidMount = () => {
+    this.timer = setTimeout(
+      () =>
+        this.setState(
+          prevState => ({
+            key: this.props.match.params.id,
+            person: this.props.people[this.props.match.params.id],
+            loading: false
+          }),
+          console.log('state updated'),
+          console.log(this.props.people[this.props.match.params.id])
+        ),
+      1
+    );
   };
 
   handleChange = event => {
@@ -54,108 +54,106 @@ class CardDetail extends Component {
   };
 
   render() {
-    console.log(this.props.people);
-    console.log(this.props.match.params.id);
-    console.log(this.props.people[this.props.match.params.id]);
-    if (this.state.loading) {
-      return <p>Loading...</p>;
-    }
-    // if (this.state.person === undefined) {
-    //   return <p>Loading...</p>;
-    // }
-
+    console.log('render');
+    const { loading } = this.state;
     return (
       <StyledDetails>
-        <Profile>
-          <Image>
-            <NavLeft>
-              <StyledLink to="/">
-                <FiArrowLeft />
-              </StyledLink>
-            </NavLeft>
-            <img
-              // src={`${this.state.person.image}.jpg`}
-              src={`${this.props.people[this.props.match.params.id].image}.jpg`}
-              // alt={this.state.person.name}
-              alt={this.props.people[this.props.match.params.id].name}
-            />
-          </Image>
-          <Info>
-            <NavRight>
-              {!this.state.editMode && (
-                <IconButton onClick={this.toggleEditMode}>
-                  <FiEdit />
-                </IconButton>
-              )}
-            </NavRight>
-            <Wrapper>
-              {this.state.editMode ? (
-                <EditForm onSubmit={this.savePerson}>
-                  <label htmlFor="name">Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    onChange={this.handleChange}
-                    value={this.state.person.name}
-                    required
-                  />
-                  <label htmlFor="dateofbirth">Date of birth</label>
-                  <input
-                    type="date"
-                    name="dateofbirth"
-                    onChange={this.handleChange}
-                    value={this.state.person.dateofbirth}
-                    pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
-                    required
-                  />
-                  <label htmlFor="title">Title</label>
-                  <input
-                    type="text"
-                    name="title"
-                    onChange={this.handleChange}
-                    value={this.state.person.title}
-                    required
-                  />
-                  <label htmlFor="bio">Bio</label>
-                  <textarea
-                    type="text"
-                    name="bio"
-                    onChange={this.handleChange}
-                    value={this.state.person.bio}
-                  />
-                  <ButtonGroup>
-                    <div>
-                      <PrimaryButton type="submit">Save</PrimaryButton>
-                      {/* <SecondaryButton onClick={this.savePerson}>
+        {loading ? (
+          <p>loading</p>
+        ) : (
+          <Profile>
+            <Image>
+              <NavLeft>
+                <StyledLink to="/">
+                  <FiArrowLeft />
+                </StyledLink>
+              </NavLeft>
+              <img
+                // src={`${this.state.person.image}.jpg`}
+                src={`${
+                  this.props.people[this.props.match.params.id].image
+                }.jpg`}
+                // alt={this.state.person.name}
+                alt={this.props.people[this.props.match.params.id].name}
+              />
+            </Image>
+            <Info>
+              <NavRight>
+                {!this.state.editMode && (
+                  <IconButton onClick={this.toggleEditMode}>
+                    <FiEdit />
+                  </IconButton>
+                )}
+              </NavRight>
+              <Wrapper>
+                {this.state.editMode ? (
+                  <EditForm onSubmit={this.savePerson}>
+                    <label htmlFor="name">Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      onChange={this.handleChange}
+                      value={this.state.person.name}
+                      required
+                    />
+                    <label htmlFor="dateofbirth">Date of birth</label>
+                    <input
+                      type="date"
+                      name="dateofbirth"
+                      onChange={this.handleChange}
+                      value={this.state.person.dateofbirth}
+                      pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+                      required
+                    />
+                    <label htmlFor="title">Title</label>
+                    <input
+                      type="text"
+                      name="title"
+                      onChange={this.handleChange}
+                      value={this.state.person.title}
+                      required
+                    />
+                    <label htmlFor="bio">Bio</label>
+                    <textarea
+                      type="text"
+                      name="bio"
+                      onChange={this.handleChange}
+                      value={this.state.person.bio}
+                    />
+                    <ButtonGroup>
+                      <div>
+                        <PrimaryButton type="submit">Save</PrimaryButton>
+                        {/* <SecondaryButton onClick={this.savePerson}>
                         Cancel
                       </SecondaryButton> */}
-                    </div>
-                    <div>
-                      <TertiaryButton onClick={this.deletePerson}>
-                        Delete Profile
-                      </TertiaryButton>
-                    </div>
-                  </ButtonGroup>
-                </EditForm>
-              ) : (
-                <>
-                  <h1>{this.state.person.name}</h1>
-                  <h2>{this.state.person.title}</h2>
-                  <span>
-                    <FiGift />
-                    <Moment
-                      locale="nl"
-                      format="DD MMMM"
-                      date={new Date(this.state.person.dateofbirth)}
-                    />
-                  </span>
-                  <p>{this.state.person.bio}</p>
-                </>
-              )}
-            </Wrapper>
-          </Info>
-          <Background />
-        </Profile>
+                      </div>
+                      <div>
+                        <TertiaryButton onClick={this.deletePerson}>
+                          Delete Profile
+                        </TertiaryButton>
+                      </div>
+                    </ButtonGroup>
+                  </EditForm>
+                ) : (
+                  <>
+                    <h1>{this.state.person.name}</h1>
+                    <h2>{this.state.person.title}</h2>
+                    <span>
+                      <FiGift />
+                      <Moment
+                        locale="nl"
+                        format="DD MMMM"
+                        date={new Date(this.state.person.dateofbirth)}
+                      />
+                    </span>
+                    <p>{this.state.person.bio}</p>
+                  </>
+                )}
+              </Wrapper>
+            </Info>
+            <Background />
+          </Profile>
+        )}
       </StyledDetails>
     );
   }
@@ -377,12 +375,12 @@ export const PrimaryButton = styled(Button)`
   color: #fff;
 `;
 
-const SecondaryButton = styled(Button)`
-  background-color: #fff;
-  border: 1px solid #d3e5eb;
-  color: #619ab0;
-  margin-left: 10px;
-`;
+// const SecondaryButton = styled(Button)`
+//   background-color: #fff;
+//   border: 1px solid #d3e5eb;
+//   color: #619ab0;
+//   margin-left: 10px;
+// `;
 
 const TertiaryButton = styled(Button)`
   border: none;

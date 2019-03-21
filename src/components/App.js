@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { createGlobalStyle } from 'styled-components';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ScrollToTop from './ScrollToTop';
 
 import '../fonts/gilroy.css';
@@ -46,6 +46,10 @@ a {
   z-index: 1;
 }
 `;
+
+// const UserContext = createContext();
+
+// class UserProvider extends Component {}
 
 class App extends Component {
   state = {
@@ -145,6 +149,7 @@ class App extends Component {
                     deletePerson={this.deletePerson}
                   />
                 )}
+              />
               />
             </Switch>
           </div>
