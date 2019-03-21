@@ -1,25 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { FiChevronRight } from 'react-icons/fi';
 
 import Icon from './Icon';
 
 import Background from './Background';
 
-const Card = ({ name, image, dateofbirth, title, bio }) => {
+const Card = ({ id, name, image, dateofbirth, title, bio }) => {
   return (
-    <Link to={`/${name}`}>
-      <StyledCard>
-        <img src={`${image}-small.jpg`} alt={name} />
-        <h3>{name}</h3>
-        <p>{title}</p>
-        <div className="symbol">
-          <Icon name="arrow" color="#333" />
-        </div>
-
+    <StyledCard>
+      <Link to={`/${id}`}>
+        <Content>
+          <img src={`${image}-small.jpg`} alt={name} />
+          <div className="info">
+            <h3>{name}</h3>
+            <p>{title}</p>
+            <p className="action">
+              <FiChevronRight />
+              View profile
+            </p>
+          </div>
+        </Content>
         <Background />
-      </StyledCard>
-    </Link>
+      </Link>
+    </StyledCard>
   );
 };
 
@@ -29,60 +34,64 @@ Card.defaultProps = {
   image: '/images/user-generic-tile'
 };
 
-export const StyledCard = styled.div`
-  width: 240px;
-  /* padding: 20px; */
-  margin: 10px;
-  transition: all 83ms;
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
   position: relative;
-  z-index: 1;
-  height: 350px;
-  overflow: hidden;
+  height: 100%;
 
-  .symbol {
-    /* background-color: #fff; */
-    /* border-radius: 50%; */
-    bottom: 3%;
-    /* box-shadow: rgba(35, 35, 35, 0.15) 2px 2px 8px; */
-    display: inline-block;
-    height: 3.5rem;
-    line-height: 1;
-    padding: 19px;
-    position: absolute;
-    right: 3%;
-    text-decoration: none;
-    width: 3.5rem;
-    z-index: 40;
-    opacity: 0;
-    transition: all 83ms;
-
-    /* animation: myship 0.3s; */
-  }
-  @keyframes myship {
-    from {
-      right: 30%;
-    }
-    to {
-      right: 3%;
-    }
-  }
-
-  &:hover {
-    /* box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 4px 6px rgba(0, 0, 0, 0.2); */
-    transition: all 83ms;
-    transform: scale(1.05);
-    .symbol {
-      animation: myship 283ms;
-      animation-fill-mode: forwards;
-      transition: all 283ms;
-      opacity: 1;
-    }
-  }
   img {
     width: 100%;
     filter: grayscale(100%);
     clip-path: polygon(0% 0%, 98% 4.99%, 99.26% 98.36%, 0% 100%);
   }
+
+  .info {
+    position: absolute;
+    bottom: -10%;
+    transition: all 200ms ease-out;
+    background-color: white;
+    width: 100%;
+    clip-path: polygon(
+      -0.42% -2.1%,
+      99.25% -4.12%,
+      100.09% 66.12%,
+      -0.01% 75.48%
+    );
+
+    h3 {
+      margin-top: 30px;
+    }
+  }
+
+  .action {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    letter-spacing: 0.05em;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    svg {
+      color: #619ab0;
+    }
+  }
+
+  :hover {
+    .info {
+      bottom: 0;
+      clip-path: polygon(0% -0.7%, 99.25% 0.79%, 100.09% 91.35%, 0% 100%);
+    }
+  }
+`;
+
+export const StyledCard = styled.div`
+  width: 240px;
+  position: relative;
+  height: 350px;
+
   h3 {
     margin-bottom: 0;
     padding: 0 20px;

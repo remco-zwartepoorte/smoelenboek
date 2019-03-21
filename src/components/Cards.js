@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Card from './Card';
 import EmptyCard from './EmptyCard';
 
-class CardsList extends Component {
+class Cards extends Component {
   render() {
     const { people } = this.props;
     return (
@@ -11,7 +11,7 @@ class CardsList extends Component {
         {Object.keys(people).map(key => (
           <Card
             key={key}
-            id={people[key].id}
+            id={key}
             name={people[key].name}
             image={people[key].image}
             title={people[key].title}
@@ -25,11 +25,12 @@ class CardsList extends Component {
   }
 }
 
-export default CardsList;
+export default Cards;
 
 const CardGrid = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  justify-items: center;
   margin-top: 20px;
-  justify-content: center;
 `;

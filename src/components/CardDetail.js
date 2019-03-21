@@ -5,22 +5,30 @@ import { FiEdit, FiArrowLeft, FiGift } from 'react-icons/fi';
 import Moment from 'react-moment';
 import 'moment/locale/nl';
 
-import Icon from './Icon';
 import Background from './Background';
 
 class CardDetail extends Component {
   state = {
-    person: null,
     editMode: false,
-    key: ''
+    key: '',
+    loading: true,
+    person: null
   };
 
-  componentDidMount = () => {
-    const key = Object.keys(this.props.people).find(key => {
-      if (this.props.people[key].name === this.props.match.params.name)
-        return key;
+  componentWillReceiveProps = () => {
+    // const key = Object.keys(this.props.people).find(key => {
+    //   if (this.props.people[key].name === this.props.match.params.name)
+    //     return key;
+    // });
+    // this.setState({ key: key, person: this.props.people[key] });
+
+    this.setState({
+      key: this.props.match.params.id,
+      person: this.props.people[this.props.match.params.id],
+      loading: false
     });
-    this.setState({ key: key, person: this.props.people[key] });
+    console.log('state updated');
+    console.log(this.props.people[this.props.match.params.id]);
   };
 
   handleChange = event => {
@@ -46,12 +54,15 @@ class CardDetail extends Component {
   };
 
   render() {
-    if (this.state.person === null) {
+    console.log(this.props.people);
+    console.log(this.props.match.params.id);
+    console.log(this.props.people[this.props.match.params.id]);
+    if (this.state.loading) {
       return <p>Loading...</p>;
     }
-    if (this.state.person === undefined) {
-      return <p>Loading...</p>;
-    }
+    // if (this.state.person === undefined) {
+    //   return <p>Loading...</p>;
+    // }
 
     return (
       <StyledDetails>
@@ -63,8 +74,10 @@ class CardDetail extends Component {
               </StyledLink>
             </NavLeft>
             <img
-              src={`${this.state.person.image}.jpg`}
-              alt={this.state.person.name}
+              // src={`${this.state.person.image}.jpg`}
+              src={`${this.props.people[this.props.match.params.id].image}.jpg`}
+              // alt={this.state.person.name}
+              alt={this.props.people[this.props.match.params.id].name}
             />
           </Image>
           <Info>
@@ -77,20 +90,23 @@ class CardDetail extends Component {
             </NavRight>
             <Wrapper>
               {this.state.editMode ? (
-                <Edit>
+                <EditForm onSubmit={this.savePerson}>
                   <label htmlFor="name">Name</label>
                   <input
                     type="text"
                     name="name"
                     onChange={this.handleChange}
                     value={this.state.person.name}
+                    required
                   />
                   <label htmlFor="dateofbirth">Date of birth</label>
                   <input
-                    type="text"
+                    type="date"
                     name="dateofbirth"
                     onChange={this.handleChange}
                     value={this.state.person.dateofbirth}
+                    pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+                    required
                   />
                   <label htmlFor="title">Title</label>
                   <input
@@ -98,6 +114,7 @@ class CardDetail extends Component {
                     name="title"
                     onChange={this.handleChange}
                     value={this.state.person.title}
+                    required
                   />
                   <label htmlFor="bio">Bio</label>
                   <textarea
@@ -108,9 +125,7 @@ class CardDetail extends Component {
                   />
                   <ButtonGroup>
                     <div>
-                      <PrimaryButton onClick={this.savePerson}>
-                        Save
-                      </PrimaryButton>
+                      <PrimaryButton type="submit">Save</PrimaryButton>
                       {/* <SecondaryButton onClick={this.savePerson}>
                         Cancel
                       </SecondaryButton> */}
@@ -121,7 +136,7 @@ class CardDetail extends Component {
                       </TertiaryButton>
                     </div>
                   </ButtonGroup>
-                </Edit>
+                </EditForm>
               ) : (
                 <>
                   <h1>{this.state.person.name}</h1>
@@ -204,8 +219,8 @@ const Info = styled.div`
     align-items: center;
 
     svg {
-      margin-right: 10px;
-      color: #666;
+      margin-right: 6px;
+      color: #9ea0a5;
     }
   }
   h1 {
@@ -226,7 +241,7 @@ const Wrapper = styled.div`
   }
 `;
 
-export const Edit = styled.div`
+export const EditForm = styled.form`
   label {
     font-weight: 800;
     margin-bottom: 4px;
@@ -348,7 +363,7 @@ const ButtonGroup = styled.div`
 const Button = styled.button`
   cursor: pointer;
   border-radius: 4px;
-  padding: 5px 9px;
+  padding: 0.5rem 1rem;
   position: relative;
   text-align: center;
   width: auto;
