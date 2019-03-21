@@ -43,7 +43,8 @@ class CardDetail extends Component {
     this.setState({ editMode: !this.state.editMode });
   };
 
-  savePerson = () => {
+  savePerson = event => {
+    event.preventDefault();
     this.props.updatePerson(this.state.key, this.state.person);
     this.toggleEditMode();
   };
