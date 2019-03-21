@@ -32,10 +32,13 @@ const StyledHeader = styled.div`
       width: 100%;
     }
     h1 {
-      /* width: 70vw; */
       color: #333;
       margin-left: 20%;
-      /* padding: 20px; */
+      font-size: 48px;
+
+      @media screen and (max-width: 768px) {
+        font-size: 5vw;
+      }
     }
   }
 `;
