@@ -20,7 +20,10 @@ class CardDetail extends Component {
   };
 
   componentDidUpdate() {
-    if (this.state.person !== this.props.people[this.props.match.params.id]) {
+    if (
+      !this.state.person &&
+      this.state.person !== this.props.people[this.props.match.params.id]
+    ) {
       this.setPerson();
     }
   }
@@ -73,12 +76,8 @@ class CardDetail extends Component {
                 </StyledLink>
               </NavLeft>
               <img
-                // src={`${this.state.person.image}.jpg`}
-                src={`${
-                  this.props.people[this.props.match.params.id].image
-                }.jpg`}
-                // alt={this.state.person.name}
-                alt={this.props.people[this.props.match.params.id].name}
+                src={`${this.state.person.image}.jpg`}
+                alt={this.state.person.name}
               />
             </Image>
             <Info>
