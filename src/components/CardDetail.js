@@ -206,6 +206,7 @@ const NavRight = styled(Nav)`
 
 const Info = styled.div`
   flex: 1;
+  position: relative;
 
   p {
     line-height: 1.5;
