@@ -19,19 +19,20 @@ class CardDetail extends Component {
     this.setPerson();
   };
 
+  componentDidUpdate() {
+    if (this.state.person !== this.props.people[this.props.match.params.id]) {
+      this.setPerson();
+    }
+  }
+
   setPerson = () => {
-    setTimeout(
-      () =>
-        this.setState(
-          () => ({
-            key: this.props.match.params.id,
-            person: this.props.people[this.props.match.params.id],
-            loading: false
-          }),
-          console.log('state updated')
-        ),
-      1
-    );
+    if (this.props.people[this.props.match.params.id]) {
+      this.setState({
+        key: this.props.match.params.id,
+        person: this.props.people[this.props.match.params.id],
+        loading: false
+      });
+    }
   };
 
   handleChange = event => {
@@ -58,7 +59,6 @@ class CardDetail extends Component {
   };
 
   render() {
-    console.log('render');
     const { loading } = this.state;
     return (
       <StyledDetails>
