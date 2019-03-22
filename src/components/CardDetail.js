@@ -16,16 +16,19 @@ class CardDetail extends Component {
   };
 
   componentDidMount = () => {
-    this.timer = setTimeout(
+    this.setPerson();
+  };
+
+  setPerson = () => {
+    setTimeout(
       () =>
         this.setState(
-          prevState => ({
+          () => ({
             key: this.props.match.params.id,
             person: this.props.people[this.props.match.params.id],
             loading: false
           }),
-          console.log('state updated'),
-          console.log(this.props.people[this.props.match.params.id])
+          console.log('state updated')
         ),
       1
     );
