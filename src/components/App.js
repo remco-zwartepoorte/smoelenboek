@@ -44,12 +44,12 @@ a {
   margin: 0 auto;
   position: relative;
   z-index: 1;
+
+  @media screen and (max-width: 768px) {
+    padding: 0 10px;
+  }
 }
 `;
-
-// const UserContext = createContext();
-
-// class UserProvider extends Component {}
 
 class App extends Component {
   state = {
