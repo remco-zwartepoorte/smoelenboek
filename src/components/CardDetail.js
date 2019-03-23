@@ -5,8 +5,6 @@ import { FiEdit, FiArrowLeft, FiGift } from 'react-icons/fi';
 import Moment from 'react-moment';
 import 'moment/locale/nl';
 
-import Background from './Background';
-
 class CardDetail extends Component {
   state = {
     editMode: false,
@@ -154,7 +152,7 @@ class CardDetail extends Component {
                 )}
               </Wrapper>
             </Info>
-            <Background />
+            {/* <Background /> */}
           </Profile>
         )}
       </StyledDetails>
@@ -176,6 +174,7 @@ const Profile = styled.div`
   flex-direction: row;
   margin-bottom: 50px;
   position: relative;
+  clip-path: polygon(0% 0%, 97.58% 1.66%, 98.49% 98.36%, 0% 100%);
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
@@ -236,6 +235,8 @@ const Info = styled.div`
 
 const Wrapper = styled.div`
   padding: 80px 50px 50px;
+  background-color: white;
+  height: 100%;
 
   @media screen and (max-width: 768px) {
     padding: 40px 25px 60px;
@@ -276,14 +277,14 @@ export const EditForm = styled.form`
   }
 `;
 
-const Image = styled.figure`
+const Image = styled.div`
   max-width: 50%;
   flex: 1;
   margin: 0;
-  position: relative;
 
   @media screen and (max-width: 768px) {
     max-width: 100%;
+    max-height: 50vh;
   }
 
   :hover {
@@ -297,10 +298,9 @@ const Image = styled.figure`
     height: 100%;
     object-fit: cover;
     filter: grayscale(100%);
-    clip-path: polygon(0% 0%, 97.58% 1.66%, 98.49% 98.36%, 0% 100%);
-
     @media screen and (max-width: 768px) {
-      height: 70vw;
+      /* max-width: 100%; */
+      max-height: 50vh;
     }
   }
 `;
