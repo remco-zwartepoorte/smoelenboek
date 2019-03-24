@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { EditForm, PrimaryButton } from './CardDetail';
+import { InfoForm, PrimaryButton } from './CardDetail';
 import Background from './Background';
 
 class AddPerson extends Component {
@@ -60,7 +60,7 @@ class AddPerson extends Component {
 }
 export default AddPerson;
 
-const AddPersonForm = styled(EditForm)`
+const AddPersonForm = styled(InfoForm)`
   position: relative;
   margin: 0 auto;
   max-width: 500px;

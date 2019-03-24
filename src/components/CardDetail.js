@@ -62,23 +62,18 @@ class CardDetail extends Component {
   render() {
     const { loading } = this.state;
     return (
-      <StyledDetails>
+      <StyledCardDetails>
         {loading ? (
           <p>loading</p>
         ) : (
-          <Profile>
-            <Image>
-              <NavLeft>
-                <StyledLink to="/">
-                  <FiArrowLeft />
-                </StyledLink>
-              </NavLeft>
-              <img
+          <>
+            <ImageWrapper>
+              <Image
                 src={`${this.state.person.image}.jpg`}
                 alt={this.state.person.name}
               />
-            </Image>
-            <Info>
+            </ImageWrapper>
+            <InfoWrapper>
               <NavRight>
                 {!this.state.editMode && (
                   <IconButton onClick={this.toggleEditMode}>
@@ -86,9 +81,9 @@ class CardDetail extends Component {
                   </IconButton>
                 )}
               </NavRight>
-              <Wrapper>
+              <Info>
                 {this.state.editMode ? (
-                  <EditForm onSubmit={this.savePerson}>
+                  <InfoForm onSubmit={this.savePerson}>
                     <label htmlFor="name">Name</label>
                     <input
                       type="text"
@@ -134,7 +129,7 @@ class CardDetail extends Component {
                         </TertiaryButton>
                       </div>
                     </ButtonGroup>
-                  </EditForm>
+                  </InfoForm>
                 ) : (
                   <>
                     <h1>{this.state.person.name}</h1>
@@ -150,26 +145,29 @@ class CardDetail extends Component {
                     <p>{this.state.person.bio}</p>
                   </>
                 )}
-              </Wrapper>
-            </Info>
-            {/* <Background /> */}
-          </Profile>
+              </Info>
+            </InfoWrapper>
+          </>
         )}
-      </StyledDetails>
+      </StyledCardDetails>
     );
   }
 }
 
 export default CardDetail;
 
-const StyledDetails = styled.div`
-  width: 100%;
-  position: relative;
-  height: 100%;
-  z-index: 1;
-`;
+const ImageWrapper = ({ children }) => (
+  <StyledImageWrapper>
+    <NavLeft>
+      <StyledLink to="/">
+        <FiArrowLeft />
+      </StyledLink>
+    </NavLeft>
+    {children}
+  </StyledImageWrapper>
+);
 
-const Profile = styled.div`
+const StyledCardDetails = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 50px;
@@ -178,6 +176,17 @@ const Profile = styled.div`
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
+  }
+`;
+
+const StyledImageWrapper = styled.div`
+  max-width: 50%;
+  flex: 1;
+  margin: 0;
+
+  @media screen and (max-width: 768px) {
+    max-width: 100%;
+    max-height: 50vh;
   }
 `;
 
@@ -191,6 +200,10 @@ const NavLeft = styled(Nav)`
   top: 51px;
   opacity: 0;
   transition: 250ms opacity linear;
+
+  ${StyledImageWrapper}:hover & {
+    opacity: 1;
+  }
 `;
 
 const NavRight = styled(Nav)`
@@ -203,9 +216,30 @@ const NavRight = styled(Nav)`
   }
 `;
 
-const Info = styled.div`
+const Image = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+
+  @media screen and (max-width: 768px) {
+    max-height: 50vh;
+  }
+`;
+
+const InfoWrapper = styled.div`
   flex: 1;
   position: relative;
+`;
+
+const Info = styled.div`
+  padding: 80px 50px 50px;
+  background-color: white;
+  height: 100%;
+
+  @media screen and (max-width: 768px) {
+    padding: 40px 25px 60px;
+  }
 
   p {
     line-height: 1.5;
@@ -233,17 +267,7 @@ const Info = styled.div`
   }
 `;
 
-const Wrapper = styled.div`
-  padding: 80px 50px 50px;
-  background-color: white;
-  height: 100%;
-
-  @media screen and (max-width: 768px) {
-    padding: 40px 25px 60px;
-  }
-`;
-
-export const EditForm = styled.form`
+export const InfoForm = styled.form`
   label {
     font-weight: 800;
     margin-bottom: 4px;
@@ -274,34 +298,6 @@ export const EditForm = styled.form`
   textarea {
     height: 220px;
     resize: none;
-  }
-`;
-
-const Image = styled.div`
-  max-width: 50%;
-  flex: 1;
-  margin: 0;
-
-  @media screen and (max-width: 768px) {
-    max-width: 100%;
-    max-height: 50vh;
-  }
-
-  :hover {
-    > div {
-      opacity: 1;
-    }
-  }
-
-  > img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(100%);
-    @media screen and (max-width: 768px) {
-      /* max-width: 100%; */
-      max-height: 50vh;
-    }
   }
 `;
 
