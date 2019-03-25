@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { InfoForm, PrimaryButton } from './CardDetail';
-import Background from './Background';
+import { PrimaryButton } from '../shared/buttons';
+import { colors, polygons } from '../utils/styles';
 
 class AddPerson extends Component {
   nameRef = React.createRef();
@@ -53,16 +53,17 @@ class AddPerson extends Component {
         <label htmlFor="bio">Bio</label>
         <textarea name="bio" ref={this.bioRef} type="text" id="bio" />
         <PrimaryButton type="submit">Create Profile</PrimaryButton>
-        <Background />
       </AddPersonForm>
     );
   }
 }
 export default AddPerson;
 
-const AddPersonForm = styled(InfoForm)`
+const AddPersonForm = styled.form`
   position: relative;
   margin: 0 auto;
   max-width: 500px;
   padding: 50px;
+  clip-path: ${polygons.detail};
+  background-color: ${colors.bgWhite};
 `;
