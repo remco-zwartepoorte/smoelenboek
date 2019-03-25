@@ -2,43 +2,36 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export default function Header() {
-  return (
-    <StyledHeader className="container">
-      <header className="App-header">
-        <Link to="/">
-          <h1>Smoelenboek</h1>
-        </Link>
-      </header>
-    </StyledHeader>
-  );
-}
+import { breakpoints, colors, polygons } from '../utils/styles';
 
-const StyledHeader = styled.div`
-  .App-header {
-    height: 150px;
-    display: flex;
-    align-items: center;
-    background-color: white;
-    clip-path: polygon(
-      12.42% 18.66%,
-      79.44% 22.32%,
-      79.87% 76.36%,
-      12.62% 79.34%
-    );
-    overflow: hidden;
+const HeaderRoot = styled.header`
+  display: flex;
+  align-items: center;
+  background-color: ${colors.bgWhite};
+  padding: 1rem;
+  clip-path: ${polygons.header};
+`;
 
-    a {
-      width: 100%;
-    }
-    h1 {
-      color: #333;
-      margin-left: 20%;
-      font-size: 48px;
+const HomeLink = styled(Link)`
+  width: 100%;
+`;
 
-      @media screen and (max-width: 768px) {
-        font-size: 5vw;
-      }
-    }
+const Title = styled.h1`
+  color: ${colors.text};
+  margin-left: 20%;
+  font-size: 3rem;
+
+  @media screen and (max-width: ${breakpoints.tablet}px) {
+    font-size: 5vw;
   }
 `;
+
+const Header = () => (
+  <HeaderRoot>
+    <HomeLink to="/">
+      <Title>Smoelenboek</Title>
+    </HomeLink>
+  </HeaderRoot>
+);
+
+export default Header;
