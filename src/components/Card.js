@@ -1,30 +1,30 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import styled from 'styled-components'
+import {Link} from 'react-router-dom'
 
-import { FiChevronRight } from 'react-icons/fi';
-import { colors, polygons } from '../utils/styles';
+import {FiChevronRight} from 'react-icons/fi'
+import {colors, polygons} from '../utils/styles'
 
 export const StyledCard = styled.div`
   width: 240px;
   position: relative;
   height: 350px;
   clip-path: ${polygons.card};
-`;
+`
 
-const CardLink = styled(Link)``;
+const CardLink = styled(Link)``
 
 const CardInner = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
   height: 100%;
-`;
+`
 
 const CardImage = styled.img`
   width: 100%;
   filter: grayscale(100%);
-`;
+`
 
 const CardText = styled.div`
   position: absolute;
@@ -36,18 +36,18 @@ const CardText = styled.div`
   ${CardInner}:hover & {
     bottom: 0;
   }
-`;
+`
 
 const Name = styled.h3`
   margin-top: 30px;
   margin-bottom: 0;
   padding: 0 20px;
-`;
+`
 
 const Title = styled.p`
   margin-top: 4px;
   padding: 0 20px;
-`;
+`
 
 const Action = styled(Title)`
   text-transform: uppercase;
@@ -62,9 +62,9 @@ const Action = styled(Title)`
   svg {
     color: ${colors.primary};
   }
-`;
+`
 
-const Card = ({ id, name, image, title }) => (
+const Card = ({id, name, image, title}) => (
   <StyledCard>
     <CardLink to={`/${id}`}>
       <CardInner>
@@ -80,10 +80,10 @@ const Card = ({ id, name, image, title }) => (
       </CardInner>
     </CardLink>
   </StyledCard>
-);
+)
 
-export default Card;
+export default Card
 
 Card.defaultProps = {
-  image: '/images/user-generic-tile'
-};
+  image: '/images/user-generic-tile',
+}

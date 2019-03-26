@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import React from 'react'
+import {Link} from 'react-router-dom'
+import styled from 'styled-components'
 
-import { breakpoints, colors, polygons } from '../utils/styles';
+import {breakpoints, colors, polygons} from '../utils/styles'
 
 const HeaderRoot = styled.header`
   display: flex;
@@ -10,11 +10,11 @@ const HeaderRoot = styled.header`
   background-color: ${colors.bgWhite};
   padding: 1rem;
   clip-path: ${polygons.header};
-`;
+`
 
 const HomeLink = styled(Link)`
   width: 100%;
-`;
+`
 
 const Title = styled.h1`
   color: ${colors.text};
@@ -24,7 +24,7 @@ const Title = styled.h1`
   @media screen and (max-width: ${breakpoints.tablet}px) {
     font-size: 5vw;
   }
-`;
+`
 
 const Header = () => (
   <HeaderRoot>
@@ -32,6 +32,6 @@ const Header = () => (
       <Title>Smoelenboek</Title>
     </HomeLink>
   </HeaderRoot>
-);
+)
 
-export default Header;
+export default Header

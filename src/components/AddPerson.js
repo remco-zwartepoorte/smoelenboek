@@ -1,32 +1,32 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import { PrimaryButton } from './Button';
-import { colors, polygons } from '../utils/styles';
+import {PrimaryButton} from './Button'
+import {colors, polygons} from '../utils/styles'
 
-class AddPerson extends Component {
-  nameRef = React.createRef();
-  dateofbirthRef = React.createRef();
-  titleRef = React.createRef();
-  bioRef = React.createRef();
+class AddPerson extends React.Component {
+  nameRef = React.createRef()
+  dateofbirthRef = React.createRef()
+  titleRef = React.createRef()
+  bioRef = React.createRef()
 
   static propTypes = {
-    addPerson: PropTypes.func
-  };
+    addPerson: PropTypes.func,
+  }
 
   createPerson = event => {
-    event.preventDefault();
+    event.preventDefault()
     const person = {
       name: this.nameRef.current.value,
       dateofbirth: this.dateofbirthRef.current.value,
       title: this.titleRef.current.value,
       bio: this.bioRef.current.value,
-      image: '/images/user-generic-tile'
-    };
-    this.props.addPerson(person);
-    this.props.history.push('/');
-  };
+      image: '/images/user-generic-tile',
+    }
+    this.props.addPerson(person)
+    this.props.history.push('/')
+  }
   render() {
     return (
       <AddPersonForm onSubmit={this.createPerson}>
@@ -54,10 +54,10 @@ class AddPerson extends Component {
         <textarea name="bio" ref={this.bioRef} type="text" id="bio" />
         <PrimaryButton type="submit">Create Profile</PrimaryButton>
       </AddPersonForm>
-    );
+    )
   }
 }
-export default AddPerson;
+export default AddPerson
 
 const AddPersonForm = styled.form`
   position: relative;
@@ -66,4 +66,4 @@ const AddPersonForm = styled.form`
   padding: 50px;
   clip-path: ${polygons.detail};
   background-color: ${colors.bgWhite};
-`;
+`

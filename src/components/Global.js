@@ -1,6 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
+import {createGlobalStyle} from 'styled-components'
 
-import { colors } from '../utils/styles';
+import {colors} from '../utils/styles'
 
 const GlobalStyle = createGlobalStyle`
 html {
@@ -55,6 +55,6 @@ textarea {
   height: 220px;
   resize: none;
 }
-`;
+`
 
-export default GlobalStyle;
+export default GlobalStyle

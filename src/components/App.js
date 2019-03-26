@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import styled from 'styled-components';
+import React from 'react'
+import {HashRouter as Router, Route, Switch} from 'react-router-dom'
+import styled from 'styled-components'
 
-import ScrollToTop from './ScrollToTop';
-import GlobalStyle from './Global';
-import { breakpoints } from '../utils/styles';
-import samplePeople from '../utils/sample-data';
-import '../fonts/gilroy.css';
+import ScrollToTop from './ScrollToTop'
+import GlobalStyle from './Global'
+import {breakpoints} from '../utils/styles'
+import samplePeople from '../utils/sample-data'
+import '../fonts/gilroy.css'
 
-import Header from './Header';
-import Cards from './Cards';
-import AddPerson from './AddPerson';
-import CardDetail from './CardDetail';
+import Header from './Header'
+import Cards from './Cards'
+import AddPerson from './AddPerson'
+import CardDetail from './CardDetail'
 
 const AppContainer = styled.div`
   max-width: 1280px;
@@ -23,45 +23,45 @@ const AppContainer = styled.div`
   @media screen and (max-width: ${breakpoints.tablet}px) {
     padding: 0 10px;
   }
-`;
+`
 
-class App extends Component {
+class App extends React.Component {
   state = {
-    people: {}
-  };
+    people: {},
+  }
 
   componentDidMount = () => {
-    const localStorageRef = localStorage.getItem('myData');
+    const localStorageRef = localStorage.getItem('myData')
     if (localStorageRef) {
-      this.setState({ people: JSON.parse(localStorageRef) });
+      this.setState({people: JSON.parse(localStorageRef)})
     } else {
       this.setState({
-        people: samplePeople
-      });
+        people: samplePeople,
+      })
     }
-  };
+  }
 
   componentDidUpdate() {
-    localStorage.setItem('myData', JSON.stringify(this.state.people));
+    localStorage.setItem('myData', JSON.stringify(this.state.people))
   }
 
   addPerson = person => {
-    const people = { ...this.state.people };
-    people[`${Date.now()}`] = person;
-    this.setState({ people });
-  };
+    const people = {...this.state.people}
+    people[`${Date.now()}`] = person
+    this.setState({people})
+  }
 
   updatePerson = (key, updatedPerson) => {
-    const people = { ...this.state.people };
-    people[key] = updatedPerson;
-    this.setState({ people });
-  };
+    const people = {...this.state.people}
+    people[key] = updatedPerson
+    this.setState({people})
+  }
 
   deletePerson = key => {
-    const people = { ...this.state.people };
-    delete people[key];
-    this.setState({ people });
-  };
+    const people = {...this.state.people}
+    delete people[key]
+    this.setState({people})
+  }
 
   render() {
     return (
@@ -104,8 +104,8 @@ class App extends Component {
           </AppContainer>
         </ScrollToTop>
       </Router>
-    );
+    )
   }
 }
 
-export default App;
+export default App

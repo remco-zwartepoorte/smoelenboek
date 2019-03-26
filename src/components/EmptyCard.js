@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FiUserPlus } from 'react-icons/fi';
-import styled from 'styled-components';
+import React from 'react'
+import {Link} from 'react-router-dom'
+import {FiUserPlus} from 'react-icons/fi'
+import styled from 'styled-components'
 
-import { colors, polygons } from '../utils/styles';
+import {colors, polygons} from '../utils/styles'
 
 const EmptyCard = () => (
   <StyledEmptyCard>
@@ -14,9 +14,9 @@ const EmptyCard = () => (
       <p>Add Profile</p>
     </Link>
   </StyledEmptyCard>
-);
+)
 
-export default EmptyCard;
+export default EmptyCard
 
 const StyledEmptyCard = styled.div`
   width: 240px;
@@ -42,4 +42,4 @@ const StyledEmptyCard = styled.div`
     margin-top: 4px;
     padding: 0 20px;
   }
-`;
+`

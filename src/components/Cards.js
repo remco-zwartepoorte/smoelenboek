@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import Card from './Card';
-import EmptyCard from './EmptyCard';
+import Card from './Card'
+import EmptyCard from './EmptyCard'
 
 const CardGrid = styled.div`
   display: grid;
@@ -11,10 +11,10 @@ const CardGrid = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   justify-items: center;
   margin-top: 20px;
-`;
+`
 
 const Cards = props => {
-  const { people } = props;
+  const {people} = props
   return (
     <CardGrid>
       {Object.keys(people).map(key => (
@@ -28,11 +28,11 @@ const Cards = props => {
       ))}
       <EmptyCard />
     </CardGrid>
-  );
-};
+  )
+}
 
 Cards.propTypes = {
-  people: PropTypes.object.isRequired
-};
+  people: PropTypes.object.isRequired,
+}
 
-export default Cards;
+export default Cards

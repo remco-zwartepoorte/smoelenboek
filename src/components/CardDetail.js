@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { FiEdit, FiArrowLeft, FiGift } from 'react-icons/fi';
-import Moment from 'react-moment';
-import 'moment/locale/nl';
+import React from 'react'
+import styled from 'styled-components'
+import {Link} from 'react-router-dom'
+import {FiEdit, FiArrowLeft, FiGift} from 'react-icons/fi'
+import Moment from 'react-moment'
+import 'moment/locale/nl'
 
-import { PrimaryButton, TertiaryButton } from './Button';
-import { colors, breakpoints, polygons } from '../utils/styles';
+import {PrimaryButton, TertiaryButton} from './Button'
+import {colors, breakpoints, polygons} from '../utils/styles'
 
 const StyledCardDetails = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ const StyledCardDetails = styled.div`
   @media screen and (max-width: ${breakpoints.tablet}px) {
     flex-direction: column;
   }
-`;
+`
 
 const ImageWrapper = styled.div`
   max-width: 50%;
@@ -29,7 +29,7 @@ const ImageWrapper = styled.div`
     max-width: 100%;
     max-height: 50vh;
   }
-`;
+`
 
 const BackLink = styled(Link)`
   position: absolute;
@@ -67,7 +67,7 @@ const BackLink = styled(Link)`
     transition: 0.2s;
     color: rgba(255, 255, 255, 0.8);
   }
-`;
+`
 
 const Image = styled.img`
   width: 100%;
@@ -78,12 +78,12 @@ const Image = styled.img`
   @media screen and (max-width: ${breakpoints.tablet}px) {
     max-height: 50vh;
   }
-`;
+`
 
 const InfoWrapper = styled.div`
   flex: 1;
   position: relative;
-`;
+`
 
 const Info = styled.div`
   padding: 80px 50px 50px;
@@ -118,7 +118,7 @@ const Info = styled.div`
     margin-top: 0;
     font-weight: 300;
   }
-`;
+`
 
 const IconButton = styled.a`
   border: none;
@@ -148,73 +148,67 @@ const IconButton = styled.a`
       color: ${colors.primary};
     }
   }
-`;
+`
 
 const ButtonGroup = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 16px;
-`;
+`
 
-class CardDetail extends Component {
+class CardDetail extends React.Component {
   state = {
     editMode: false,
-    key: '',
-    isLoading: true,
-    person: null
-  };
+    person: null,
+  }
 
   componentDidMount = () => {
-    this.setPerson();
-  };
+    this.setPerson()
+  }
 
   componentDidUpdate() {
     if (
       !this.state.person &&
       this.state.person !== this.props.people[this.props.match.params.id]
     ) {
-      this.setPerson();
+      this.setPerson()
     }
   }
 
   setPerson = () => {
     if (this.props.people[this.props.match.params.id]) {
       this.setState({
-        key: this.props.match.params.id,
         person: this.props.people[this.props.match.params.id],
-        isLoading: false
-      });
+      })
     }
-  };
+  }
 
   handleChange = event => {
     const updatedPerson = {
       ...this.state.person,
-      [event.currentTarget.name]: event.currentTarget.value
-    };
-    this.setState({ person: updatedPerson });
-  };
+      [event.currentTarget.name]: event.currentTarget.value,
+    }
+    this.setState({person: updatedPerson})
+  }
 
   toggleEditMode = () => {
-    this.setState({ editMode: !this.state.editMode });
-  };
+    this.setState({editMode: !this.state.editMode})
+  }
 
   savePerson = event => {
-    event.preventDefault();
-    this.props.updatePerson(this.state.key, this.state.person);
-    this.toggleEditMode();
-  };
+    event.preventDefault()
+    this.props.updatePerson(this.props.match.params.id, this.state.person)
+    this.toggleEditMode()
+  }
 
   deletePerson = () => {
-    this.props.deletePerson(this.state.key);
-    this.props.history.push('/');
-  };
+    this.props.deletePerson(this.props.match.params.id)
+    this.props.history.push('/')
+  }
 
   render() {
-    const { isLoading } = this.state;
-
-    if (isLoading) {
-      return <p>Loading ...</p>;
+    if (!this.state.person) {
+      return null
     }
 
     return (
@@ -295,8 +289,8 @@ class CardDetail extends Component {
         </InfoWrapper>
         )}
       </StyledCardDetails>
-    );
+    )
   }
 }
 
-export default CardDetail;
+export default CardDetail
