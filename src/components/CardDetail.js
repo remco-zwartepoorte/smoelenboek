@@ -5,7 +5,7 @@ import { FiEdit, FiArrowLeft, FiGift } from 'react-icons/fi';
 import Moment from 'react-moment';
 import 'moment/locale/nl';
 
-import { PrimaryButton, TertiaryButton } from '../shared/buttons';
+import { PrimaryButton, TertiaryButton } from './Button';
 import { colors, breakpoints, polygons } from '../utils/styles';
 
 const StyledCardDetails = styled.div`
