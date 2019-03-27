@@ -5,7 +5,7 @@ import {FiEdit, FiArrowLeft, FiGift} from 'react-icons/fi'
 import Moment from 'react-moment'
 import 'moment/locale/nl'
 
-import {PrimaryButton, TertiaryButton} from './Button'
+import {PrimaryButton, SecondaryButton, TertiaryButton} from './Button'
 import {colors, breakpoints, polygons} from '../utils/styles'
 
 const StyledCardDetails = styled.div`
@@ -206,6 +206,11 @@ class CardDetail extends React.Component {
     this.props.history.push('/')
   }
 
+  cancelEdit = () => {
+    this.setPerson()
+    this.toggleEditMode()
+  }
+
   render() {
     if (!this.state.person) {
       return null
@@ -264,7 +269,12 @@ class CardDetail extends React.Component {
                   value={this.state.person.bio}
                 />
                 <ButtonGroup>
-                  <PrimaryButton type="submit">Save</PrimaryButton>
+                  <div>
+                    <PrimaryButton type="submit">Save</PrimaryButton>
+                    <SecondaryButton onClick={this.cancelEdit}>
+                      Cancel
+                    </SecondaryButton>
+                  </div>
                   <TertiaryButton onClick={this.deletePerson}>
                     Delete Profile
                   </TertiaryButton>
