@@ -5,15 +5,20 @@ import styled from 'styled-components'
 import {PrimaryButton} from './Button'
 import {colors, polygons} from '../utils/styles'
 
+const AddPersonForm = styled.form`
+  position: relative;
+  margin: 0 auto;
+  max-width: 500px;
+  padding: 50px;
+  clip-path: ${polygons.detail};
+  background-color: ${colors.bgWhite};
+`
+
 class AddPerson extends React.Component {
   nameRef = React.createRef()
   dateofbirthRef = React.createRef()
   titleRef = React.createRef()
   bioRef = React.createRef()
-
-  static propTypes = {
-    addPerson: PropTypes.func,
-  }
 
   createPerson = event => {
     event.preventDefault()
@@ -57,13 +62,10 @@ class AddPerson extends React.Component {
     )
   }
 }
-export default AddPerson
 
-const AddPersonForm = styled.form`
-  position: relative;
-  margin: 0 auto;
-  max-width: 500px;
-  padding: 50px;
-  clip-path: ${polygons.detail};
-  background-color: ${colors.bgWhite};
-`
+AddPerson.propTypes = {
+  people: PropTypes.object.isRequired,
+  addPerson: PropTypes.func.isRequired,
+}
+
+export default AddPerson
