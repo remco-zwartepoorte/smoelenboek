@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 import {FiEdit, FiArrowLeft, FiGift} from 'react-icons/fi'
@@ -159,28 +160,19 @@ const ButtonGroup = styled.div`
 class CardDetail extends React.Component {
   state = {
     editMode: false,
-    person: null,
-  }
-
-  componentDidMount = () => {
-    this.setPerson()
+    person: this.props.people[this.props.match.params.id],
   }
 
   componentDidUpdate() {
-    if (
-      !this.state.person &&
-      this.state.person !== this.props.people[this.props.match.params.id]
-    ) {
+    if (!this.state.person) {
       this.setPerson()
     }
   }
 
   setPerson = () => {
-    if (this.props.people[this.props.match.params.id]) {
-      this.setState({
-        person: this.props.people[this.props.match.params.id],
-      })
-    }
+    this.setState({
+      person: this.props.people[this.props.match.params.id],
+    })
   }
 
   handleChange = event => {
@@ -206,7 +198,7 @@ class CardDetail extends React.Component {
     this.props.history.push('/')
   }
 
-  cancelEdit = () => {
+  resetForm = () => {
     this.setPerson()
     this.toggleEditMode()
   }
@@ -271,7 +263,7 @@ class CardDetail extends React.Component {
                 <ButtonGroup>
                   <div>
                     <PrimaryButton type="submit">Save</PrimaryButton>
-                    <SecondaryButton onClick={this.cancelEdit}>
+                    <SecondaryButton onClick={this.resetForm}>
                       Cancel
                     </SecondaryButton>
                   </div>
@@ -301,6 +293,12 @@ class CardDetail extends React.Component {
       </StyledCardDetails>
     )
   }
+}
+
+CardDetail.propTypes = {
+  people: PropTypes.object.isRequired,
+  updatePerson: PropTypes.func.isRequired,
+  deletePerson: PropTypes.func.isRequired,
 }
 
 export default CardDetail
