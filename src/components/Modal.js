@@ -33,6 +33,7 @@ const ModalCard = styled.div`
   flex-direction: column;
   border-top: 5px solid ${colors.danger};
   animation: blowUpModal 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+
   @keyframes blowUpModal {
     0% {
       transform: scale(0);

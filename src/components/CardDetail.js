@@ -10,14 +10,9 @@ import Modal from './Modal'
 import {PrimaryButton, SecondaryButton, TertiaryButton} from './Button'
 import {colors, breakpoints, polygons} from '../utils/styles'
 
-const StyledCardDetails = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 50px;
-  position: relative;
-  clip-path: ${polygons.detail};
-  animation: fadeIn ease-in-out 0.3s forwards;
+const PageWrapper = styled.div`
   opacity: 0;
+  animation: fadeIn ease-in-out 0.3s forwards;
 
   @keyframes fadeIn {
     0% {
@@ -27,6 +22,13 @@ const StyledCardDetails = styled.div`
       opacity: 1;
     }
   }
+`
+const StyledCardDetails = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 50px;
+  position: relative;
+  clip-path: ${polygons.detail};
 
   @media screen and (max-width: ${breakpoints.tablet}px) {
     flex-direction: column;
@@ -228,96 +230,98 @@ class CardDetail extends React.Component {
     }
 
     return (
-      <StyledCardDetails>
-        <ImageWrapper>
-          <BackLink to="/">
-            <FiArrowLeft />
-          </BackLink>
-          <Image
-            src={`${this.state.person.image}.jpg`}
-            alt={this.state.person.name}
-          />
-        </ImageWrapper>
-        <InfoWrapper>
-          {!this.state.editMode && (
-            <IconButton onClick={this.toggleEditMode}>
-              <FiEdit />
-            </IconButton>
-          )}
-          <Info>
-            {this.state.editMode ? (
-              <form onSubmit={this.savePerson}>
-                <label htmlFor="name">Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  onChange={this.handleChange}
-                  value={this.state.person.name}
-                  required
-                />
-                <label htmlFor="dateofbirth">Date of birth</label>
-                <input
-                  type="date"
-                  name="dateofbirth"
-                  onChange={this.handleChange}
-                  value={this.state.person.dateofbirth}
-                  pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
-                  required
-                />
-                <label htmlFor="title">Title</label>
-                <input
-                  type="text"
-                  name="title"
-                  onChange={this.handleChange}
-                  value={this.state.person.title}
-                  required
-                />
-                <label htmlFor="bio">Bio</label>
-                <textarea
-                  type="text"
-                  name="bio"
-                  onChange={this.handleChange}
-                  value={this.state.person.bio}
-                />
-
-                <ButtonGroup>
-                  <div>
-                    <PrimaryButton type="submit">Save</PrimaryButton>
-                    <SecondaryButton type="button" onClick={this.resetForm}>
-                      Cancel
-                    </SecondaryButton>
-                  </div>
-                  <TertiaryButton type="button" onClick={this.toggleModal}>
-                    Delete Profile
-                  </TertiaryButton>
-                </ButtonGroup>
-              </form>
-            ) : (
-              <>
-                <h1>{this.state.person.name}</h1>
-                <h2>{this.state.person.title}</h2>
-                <span>
-                  <FiGift />
-                  <Moment
-                    locale="nl"
-                    format="DD MMMM"
-                    date={new Date(this.state.person.dateofbirth)}
-                  />
-                </span>
-                <p>{this.state.person.bio}</p>
-              </>
+      <PageWrapper>
+        <StyledCardDetails>
+          <ImageWrapper>
+            <BackLink to="/">
+              <FiArrowLeft />
+            </BackLink>
+            <Image
+              src={`${this.state.person.image}.jpg`}
+              alt={this.state.person.name}
+            />
+          </ImageWrapper>
+          <InfoWrapper>
+            {!this.state.editMode && (
+              <IconButton onClick={this.toggleEditMode}>
+                <FiEdit />
+              </IconButton>
             )}
-          </Info>
-        </InfoWrapper>
-        )}
-        {this.state.modalOpen && (
-          <Modal
-            toggleModal={this.toggleModal}
-            primaryAction={this.deletePerson}
-            modalText="Are you sure you want to delete this profile?"
-          />
-        )}
-      </StyledCardDetails>
+            <Info>
+              {this.state.editMode ? (
+                <form onSubmit={this.savePerson}>
+                  <label htmlFor="name">Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    onChange={this.handleChange}
+                    value={this.state.person.name}
+                    required
+                  />
+                  <label htmlFor="dateofbirth">Date of birth</label>
+                  <input
+                    type="date"
+                    name="dateofbirth"
+                    onChange={this.handleChange}
+                    value={this.state.person.dateofbirth}
+                    pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+                    required
+                  />
+                  <label htmlFor="title">Title</label>
+                  <input
+                    type="text"
+                    name="title"
+                    onChange={this.handleChange}
+                    value={this.state.person.title}
+                    required
+                  />
+                  <label htmlFor="bio">Bio</label>
+                  <textarea
+                    type="text"
+                    name="bio"
+                    onChange={this.handleChange}
+                    value={this.state.person.bio}
+                  />
+
+                  <ButtonGroup>
+                    <div>
+                      <PrimaryButton type="submit">Save</PrimaryButton>
+                      <SecondaryButton type="button" onClick={this.resetForm}>
+                        Cancel
+                      </SecondaryButton>
+                    </div>
+                    <TertiaryButton type="button" onClick={this.toggleModal}>
+                      Delete Profile
+                    </TertiaryButton>
+                  </ButtonGroup>
+                </form>
+              ) : (
+                <>
+                  <h1>{this.state.person.name}</h1>
+                  <h2>{this.state.person.title}</h2>
+                  <span>
+                    <FiGift />
+                    <Moment
+                      locale="nl"
+                      format="DD MMMM"
+                      date={new Date(this.state.person.dateofbirth)}
+                    />
+                  </span>
+                  <p>{this.state.person.bio}</p>
+                </>
+              )}
+            </Info>
+          </InfoWrapper>
+          )}
+          {this.state.modalOpen && (
+            <Modal
+              toggleModal={this.toggleModal}
+              primaryAction={this.deletePerson}
+              modalText="Are you sure you want to delete this profile?"
+            />
+          )}
+        </StyledCardDetails>
+      </PageWrapper>
     )
   }
 }
