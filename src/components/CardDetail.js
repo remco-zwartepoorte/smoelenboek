@@ -6,6 +6,7 @@ import {FiEdit, FiArrowLeft, FiGift} from 'react-icons/fi'
 import Moment from 'react-moment'
 import 'moment/locale/nl'
 
+import Modal from './Modal'
 import {PrimaryButton, SecondaryButton, TertiaryButton} from './Button'
 import {colors, breakpoints, polygons} from '../utils/styles'
 
@@ -128,15 +129,17 @@ const IconButton = styled.a`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  padding: 0.5rem 0.5rem;
+  font-size: 1.8rem;
   position: absolute;
   z-index: 10;
-  right: 50px;
-  top: 63px;
+  right: 3rem;
+  top: 3rem;
 
   @media screen and (max-width: ${breakpoints.tablet}px) {
-    right: 25px;
-    top: 20px;
+    right: 1.5rem;
+    top: 1rem;
+    font-size: 1.5rem;
   }
 
   svg {
@@ -160,6 +163,7 @@ const ButtonGroup = styled.div`
 class CardDetail extends React.Component {
   state = {
     editMode: false,
+    modalOpen: false,
     person: this.props.people[this.props.match.params.id],
   }
 
@@ -181,6 +185,10 @@ class CardDetail extends React.Component {
       [event.currentTarget.name]: event.currentTarget.value,
     }
     this.setState({person: updatedPerson})
+  }
+
+  toggleModal = () => {
+    this.setState({modalOpen: !this.state.modalOpen})
   }
 
   toggleEditMode = () => {
@@ -260,14 +268,15 @@ class CardDetail extends React.Component {
                   onChange={this.handleChange}
                   value={this.state.person.bio}
                 />
+
                 <ButtonGroup>
                   <div>
                     <PrimaryButton type="submit">Save</PrimaryButton>
-                    <SecondaryButton onClick={this.resetForm}>
+                    <SecondaryButton type="button" onClick={this.resetForm}>
                       Cancel
                     </SecondaryButton>
                   </div>
-                  <TertiaryButton onClick={this.deletePerson}>
+                  <TertiaryButton type="button" onClick={this.toggleModal}>
                     Delete Profile
                   </TertiaryButton>
                 </ButtonGroup>
@@ -289,6 +298,13 @@ class CardDetail extends React.Component {
             )}
           </Info>
         </InfoWrapper>
+        )}
+        {this.state.modalOpen && (
+          <Modal
+            toggleModal={this.toggleModal}
+            primaryAction={this.deletePerson}
+            modalText="Are you sure you want to delete this profile?"
+          />
         )}
       </StyledCardDetails>
     )

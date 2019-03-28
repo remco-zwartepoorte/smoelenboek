@@ -13,11 +13,12 @@ export const colors = {
   darkest: '#4d4058',
   text: '#333333',
   textMild: '#555555',
-  textLight: '#7e718a',
+  textLight: '#6c757d',
   textLighter: '#aaaaaa',
   bgWhite: '#ffffff',
   bgLight: '#f9f9f6',
   bgGrey: '#333333',
+  danger: '#ff4b4b',
 }
 
 export const polygons = {

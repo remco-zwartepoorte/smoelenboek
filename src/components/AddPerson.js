@@ -57,6 +57,13 @@ class AddPerson extends React.Component {
         />
         <label htmlFor="bio">Bio</label>
         <textarea name="bio" ref={this.bioRef} type="text" id="bio" />
+        <label htmlFor="avatar">Choose a profile picture</label>
+        <input
+          type="file"
+          id="avatar"
+          name="avatar"
+          accept="image/png, image/jpeg"
+        />
         <PrimaryButton type="submit">Create Profile</PrimaryButton>
       </AddPersonForm>
     )

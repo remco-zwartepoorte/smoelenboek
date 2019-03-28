@@ -10,24 +10,37 @@ const Button = styled.button`
   width: auto;
   font-size: 14px;
   font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 `
 
 export const PrimaryButton = styled(Button)`
-  background-color: ${colors.primary};
-  border: 1px solid ${colors.primary};
+  background-color: ${colors.textLight};
+  border: 1px solid ${colors.textLight};
   color: ${colors.white};
+  box-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.2);
 `
 
 export const SecondaryButton = styled(Button)`
   background-color: #fff;
   border: 1px solid ${colors.primaryight};
-  color: ${colors.primary};
+  color: ${colors.textLight};
   margin-left: 10px;
 `
 
 export const TertiaryButton = styled(Button)`
-  border: none;
+  border: 1px solid ${colors.bgWhite};
   background-color: ${colors.bgWhite};
-  color: ${colors.primary};
-  margin-left: 10px;
+  color: ${colors.textLight};
+
+  : hover {
+    background-color: ${colors.bgLight};
+    border: 1px solid ${colors.bgLight};
+  }
+`
+export const DeleteButton = styled(Button)`
+  background-color: ${colors.danger};
+  border: 1px solid ${colors.danger};
+  color: ${colors.white};
 `
