@@ -32,6 +32,16 @@ const ModalCard = styled.div`
   display: flex;
   flex-direction: column;
   border-top: 5px solid ${colors.danger};
+  animation: blowUpModal 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+
+  @keyframes blowUpModal {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 `
 
 const ModalText = styled.p`
@@ -44,8 +54,7 @@ const Background = styled.div`
   height: 100%;
   top: 0;
   left: 0;
-  background-color: black;
-  opacity: 0.6;
+  background: rgba(0, 0, 0, 0.7);
 `
 
 const Icon = styled.div`
