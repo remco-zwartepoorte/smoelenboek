@@ -16,6 +16,17 @@ const StyledCardDetails = styled.div`
   margin-bottom: 50px;
   position: relative;
   clip-path: ${polygons.detail};
+  animation: fadeIn ease-in-out 0.3s forwards;
+  opacity: 0;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 
   @media screen and (max-width: ${breakpoints.tablet}px) {
     flex-direction: column;
