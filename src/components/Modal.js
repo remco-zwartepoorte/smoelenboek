@@ -84,7 +84,6 @@ export default class Modal extends Component {
 
   render() {
     const {toggleModal, modalText, primaryAction} = this.props
-    // const CustomTag = <h1>`${icon}`</h1>
     return (
       <Portal>
         <ModalWrapper>

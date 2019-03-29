@@ -12,7 +12,7 @@ import {colors, breakpoints, polygons} from '../utils/styles'
 
 const PageWrapper = styled.div`
   opacity: 0;
-  animation: fadeIn ease-in-out 0.3s forwards;
+  animation: fadeIn ease-in 0.3s forwards;
 
   @keyframes fadeIn {
     0% {
