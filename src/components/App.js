@@ -1,10 +1,10 @@
 import React from 'react'
 import {HashRouter as Router, Route, Switch} from 'react-router-dom'
-import styled from 'styled-components'
+import styled, {ThemeProvider} from 'styled-components'
 
 import ScrollToTop from './ScrollToTop'
-import GlobalStyle from './Global'
-import {breakpoints} from '../utils/styles'
+import GlobalStyle from './global'
+import theme from './theme'
 import samplePeople from '../utils/sample-data'
 import '../fonts/gilroy.css'
 
@@ -20,7 +20,7 @@ const AppContainer = styled.div`
   position: relative;
   z-index: 1;
 
-  @media screen and (max-width: ${breakpoints.tablet}px) {
+  @media screen and (max-width: ${props => props.theme.breakpoints.tablet}px) {
     padding: 0 10px;
   }
 `
@@ -65,45 +65,47 @@ class App extends React.Component {
 
   render() {
     return (
-      <Router>
-        <ScrollToTop>
-          <GlobalStyle />
-          <AppContainer>
-            <Header />
-            <Switch>
-              <Route
-                exact
-                path="/"
-                render={props => (
-                  <Cards {...props} people={this.state.people} />
-                )}
-              />
-              <Route
-                path="/new"
-                render={props => (
-                  <AddPerson
-                    {...props}
-                    addPerson={this.addPerson}
-                    people={this.state.people}
-                  />
-                )}
-              />
-              <Route
-                path="/:id"
-                render={props => (
-                  <CardDetail
-                    {...props}
-                    people={this.state.people}
-                    updatePerson={this.updatePerson}
-                    deletePerson={this.deletePerson}
-                  />
-                )}
-              />
-              />
-            </Switch>
-          </AppContainer>
-        </ScrollToTop>
-      </Router>
+      <ThemeProvider theme={theme}>
+        <Router>
+          <ScrollToTop>
+            <GlobalStyle />
+            <AppContainer>
+              <Header />
+              <Switch>
+                <Route
+                  exact
+                  path="/"
+                  render={props => (
+                    <Cards {...props} people={this.state.people} />
+                  )}
+                />
+                <Route
+                  path="/new"
+                  render={props => (
+                    <AddPerson
+                      {...props}
+                      addPerson={this.addPerson}
+                      people={this.state.people}
+                    />
+                  )}
+                />
+                <Route
+                  path="/:id"
+                  render={props => (
+                    <CardDetail
+                      {...props}
+                      people={this.state.people}
+                      updatePerson={this.updatePerson}
+                      deletePerson={this.deletePerson}
+                    />
+                  )}
+                />
+                />
+              </Switch>
+            </AppContainer>
+          </ScrollToTop>
+        </Router>
+      </ThemeProvider>
     )
   }
 }

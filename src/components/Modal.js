@@ -3,8 +3,7 @@ import Portal from './Portal'
 import styled from 'styled-components'
 import {FiAlertTriangle} from 'react-icons/fi'
 
-import {SecondaryButton, DeleteButton} from './Button'
-import {colors} from '../utils/styles'
+import Button, {ButtonDanger} from './Button'
 
 const ModalWrapper = styled.div`
   position: fixed;
@@ -20,9 +19,8 @@ const ModalWrapper = styled.div`
 `
 
 const ModalCard = styled.div`
-  background-color: rgba(255, 255, 255, 1);
+  background-color: ${props => props.theme.colors.bgWhite};
   text-align: center;
-  /* border-radius: 5px; */
   box-shadow: 0 15px 35px hsla(0, 0%, 0%, 0.2);
   max-width: 400px;
   min-width: 320px;
@@ -31,7 +29,7 @@ const ModalCard = styled.div`
   z-index: 10;
   display: flex;
   flex-direction: column;
-  border-top: 5px solid ${colors.danger};
+  border-top: 5px solid ${props => props.theme.colors.danger};
   animation: blowUpModal 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 
   @keyframes blowUpModal {
@@ -54,7 +52,7 @@ const Background = styled.div`
   height: 100%;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.75);
 `
 
 const Icon = styled.div`
@@ -62,9 +60,9 @@ const Icon = styled.div`
   align-items: center;
   justify-content: center;
   align-self: center;
-  color: #fff;
+  color: ${props => props.theme.colors.white};
   z-index: 10;
-  background-color: #ff4b4b;
+  background-color: ${props => props.theme.colors.danger};
   border-radius: 100%;
   width: 3rem;
   height: 3rem;
@@ -93,8 +91,8 @@ export default class Modal extends Component {
             </Icon>
             <ModalText>{modalText}</ModalText>
             <div>
-              <DeleteButton onClick={primaryAction}>Delete</DeleteButton>
-              <SecondaryButton onClick={toggleModal}>Cancel</SecondaryButton>
+              <ButtonDanger onClick={primaryAction}>Delete</ButtonDanger>
+              <Button onClick={toggleModal}>Cancel</Button>
             </div>
           </ModalCard>
           <Background onClick={toggleModal} />

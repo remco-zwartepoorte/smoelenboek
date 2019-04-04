@@ -3,8 +3,6 @@ import {Link} from 'react-router-dom'
 import {FiUserPlus} from 'react-icons/fi'
 import styled from 'styled-components'
 
-import {colors, polygons} from '../utils/styles'
-
 const EmptyCard = () => (
   <StyledEmptyCard>
     <Link to="/new">
@@ -22,9 +20,9 @@ const StyledEmptyCard = styled.div`
   width: 240px;
   position: relative;
   height: 350px;
-  clip-path: ${polygons.card};
+  clip-path: ${props => props.theme.polygons.card};
   transition: all 100ms ease-out;
-  background-color: ${colors.bgWhite};
+  background-color: ${props => props.theme.colors.bgWhite};
 
   :hover {
     transform: scale(1.05);

@@ -1,7 +1,5 @@
 import {createGlobalStyle} from 'styled-components'
 
-import {colors} from '../utils/styles'
-
 const GlobalStyle = createGlobalStyle`
 html {
   box-sizing: border-box;
@@ -15,8 +13,8 @@ html {
 body {
   font-family: 'Gilroy', '-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Helvetica','Arial','sans-serif','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol', sans-serif;
   margin:  0;
-  background-color: ${colors.bgGrey};
-  color: ${colors.text};
+  background-color: ${props => props.theme.colors.bgGrey};
+  color: ${props => props.theme.colors.text};
 }
 
 a {
@@ -40,7 +38,7 @@ textarea {
   width: 100%;
   margin-bottom: 16px;
   padding: 10px;
-  color: ${colors.text};
+  color: ${props => props.theme.colors.text};
   text-align: left;
   border: 1px solid #efefef;
   border-radius: 3px;
@@ -55,6 +53,10 @@ textarea {
   height: 220px;
   resize: none;
 }
+
+button + button {
+    margin-left: 10px;
+  }
 `
 
 export default GlobalStyle

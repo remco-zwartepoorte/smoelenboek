@@ -3,13 +3,12 @@ import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 
 import {FiChevronRight} from 'react-icons/fi'
-import {colors, polygons} from '../utils/styles'
 
 export const StyledCard = styled.div`
   width: 240px;
   position: relative;
   height: 350px;
-  clip-path: ${polygons.card};
+  clip-path: ${props => props.theme.polygons.card};
 `
 
 const CardLink = styled(Link)``
@@ -30,7 +29,7 @@ const CardText = styled.div`
   position: absolute;
   bottom: -10%;
   transition: all 200ms ease-out;
-  background-color: ${colors.bgWhite};
+  background-color: ${props => props.theme.colors.bgWhite};
   width: 100%;
 
   ${CardInner}:hover & {
@@ -60,7 +59,7 @@ const Action = styled(Title)`
   margin-bottom: 20px;
 
   svg {
-    color: ${colors.primary};
+    color: ${props => props.theme.colors.primary};
   }
 `
 

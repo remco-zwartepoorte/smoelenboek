@@ -2,16 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import {PrimaryButton} from './Button'
-import {colors, polygons} from '../utils/styles'
+import {ButtonPrimary} from './Button'
 
 const AddPersonForm = styled.form`
   position: relative;
   margin: 0 auto;
   max-width: 500px;
   padding: 50px;
-  clip-path: ${polygons.detail};
-  background-color: ${colors.bgWhite};
+  clip-path: ${props => props.theme.polygons.detail};
+  background-color: ${props => props.theme.colors.bgWhite};
 `
 
 class AddPerson extends React.Component {
@@ -57,14 +56,14 @@ class AddPerson extends React.Component {
         />
         <label htmlFor="bio">Bio</label>
         <textarea name="bio" ref={this.bioRef} type="text" id="bio" />
-        <label htmlFor="avatar">Choose a profile picture</label>
+        {/* <label htmlFor="avatar">Choose a profile picture</label>
         <input
           type="file"
           id="avatar"
           name="avatar"
           accept="image/png, image/jpeg"
-        />
-        <PrimaryButton type="submit">Create Profile</PrimaryButton>
+        /> */}
+        <ButtonPrimary type="submit">Create Profile</ButtonPrimary>
       </AddPersonForm>
     )
   }

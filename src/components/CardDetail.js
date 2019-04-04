@@ -7,8 +7,7 @@ import Moment from 'react-moment'
 import 'moment/locale/nl'
 
 import Modal from './Modal'
-import {PrimaryButton, SecondaryButton, TertiaryButton} from './Button'
-import {colors, breakpoints, polygons} from '../utils/styles'
+import {ButtonPrimary, ButtonOutline, ButtonMinimal} from './Button'
 
 const PageWrapper = styled.div`
   opacity: 0;
@@ -28,9 +27,9 @@ const StyledCardDetails = styled.div`
   flex-direction: row;
   margin-bottom: 50px;
   position: relative;
-  clip-path: ${polygons.detail};
+  clip-path: ${props => props.theme.polygons.detail};
 
-  @media screen and (max-width: ${breakpoints.tablet}px) {
+  @media screen and (max-width: ${props => props.theme.breakpoints.tablet}px) {
     flex-direction: column;
   }
 `
@@ -40,7 +39,7 @@ const ImageWrapper = styled.div`
   flex: 1;
   margin: 0;
 
-  @media screen and (max-width: ${breakpoints.tablet}px) {
+  @media screen and (max-width: ${props => props.theme.breakpoints.tablet}px) {
     max-width: 100%;
     max-height: 50vh;
   }
@@ -90,7 +89,7 @@ const Image = styled.img`
   object-fit: cover;
   filter: grayscale(100%);
 
-  @media screen and (max-width: ${breakpoints.tablet}px) {
+  @media screen and (max-width: ${props => props.theme.breakpoints.tablet}px) {
     max-height: 50vh;
   }
 `
@@ -102,10 +101,10 @@ const InfoWrapper = styled.div`
 
 const Info = styled.div`
   padding: 80px 50px 50px;
-  background-color: ${colors.bgWhite};
+  background-color: ${props => props.theme.colors.bgWhite};
   height: 100%;
 
-  @media screen and (max-width: ${breakpoints.tablet}px) {
+  @media screen and (max-width: ${props => props.theme.breakpoints.tablet}px) {
     padding: 40px 25px 60px;
   }
 
@@ -122,7 +121,7 @@ const Info = styled.div`
 
     svg {
       margin-right: 6px;
-      color: ${colors.textLighter};
+      color: ${props => props.theme.colors.textLighter};
     }
   }
   h1 {
@@ -149,7 +148,7 @@ const IconButton = styled.a`
   right: 3rem;
   top: 3rem;
 
-  @media screen and (max-width: ${breakpoints.tablet}px) {
+  @media screen and (max-width: ${props => props.theme.breakpoints.tablet}px) {
     right: 1.5rem;
     top: 1rem;
     font-size: 1.5rem;
@@ -159,10 +158,10 @@ const IconButton = styled.a`
     height: 1em;
     width: 1em;
     transition: 0.2s;
-    color: ${colors.text};
+    color: ${props => props.theme.colors.text};
 
     :hover {
-      color: ${colors.primary};
+      color: ${props => props.theme.colors.primary};
     }
   }
 `
@@ -173,10 +172,15 @@ const ButtonGroup = styled.div`
   margin-top: 16px;
 `
 
+function simulateNetworkRequest() {
+  return new Promise(resolve => setTimeout(resolve, 500))
+}
+
 class CardDetail extends React.Component {
   state = {
     editMode: false,
     modalOpen: false,
+    isSaving: false,
     person: this.props.people[this.props.match.params.id],
   }
 
@@ -210,8 +214,12 @@ class CardDetail extends React.Component {
 
   savePerson = event => {
     event.preventDefault()
-    this.props.updatePerson(this.props.match.params.id, this.state.person)
-    this.toggleEditMode()
+    this.setState({isSaving: true})
+    simulateNetworkRequest().then(() => {
+      this.props.updatePerson(this.props.match.params.id, this.state.person)
+      this.toggleEditMode()
+      this.setState({isSaving: false})
+    })
   }
 
   deletePerson = () => {
@@ -285,14 +293,23 @@ class CardDetail extends React.Component {
 
                   <ButtonGroup>
                     <div>
-                      <PrimaryButton type="submit">Save</PrimaryButton>
-                      <SecondaryButton type="button" onClick={this.resetForm}>
-                        Cancel
-                      </SecondaryButton>
+                      <ButtonPrimary
+                        type="submit"
+                        disabled={this.state.isSaving}
+                      >
+                        {this.state.isSaving ? 'Saving…' : 'Save'}
+                      </ButtonPrimary>
+                      {!this.state.isSaving && (
+                        <ButtonOutline type="button" onClick={this.resetForm}>
+                          Cancel
+                        </ButtonOutline>
+                      )}
                     </div>
-                    <TertiaryButton type="button" onClick={this.toggleModal}>
-                      Delete Profile
-                    </TertiaryButton>
+                    {!this.state.isSaving && (
+                      <ButtonMinimal type="button" onClick={this.toggleModal}>
+                        Delete Profile
+                      </ButtonMinimal>
+                    )}
                   </ButtonGroup>
                 </form>
               ) : (
