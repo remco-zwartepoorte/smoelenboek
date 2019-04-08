@@ -1,4 +1,7 @@
+// import React from 'react'
 import styled from 'styled-components'
+
+// const Button = props => <StyledButton {...props}>{props.children}</StyledButton>
 
 const Button = styled.button`
   position: relative;
@@ -21,8 +24,10 @@ const Button = styled.button`
   color: ${props => props.theme.colors.button.grey};
 
   &:hover {
-    border-color: ${props => props.theme.colors.button.grey};
-    color: ${props => props.theme.colors.button.greyDark};
+    border-color: ${props =>
+      props.disabled ? null : props.theme.colors.button.grey};
+    color: ${props =>
+      props.disabled ? null : props.theme.colors.button.greyDark};
   }
 
   &:disabled {
@@ -37,9 +42,12 @@ export const ButtonPrimary = styled(Button)`
   color: ${props => props.theme.colors.button.white};
 
   &:hover {
-    background-color: ${props => props.theme.colors.button.primaryDark};
-    border-color: ${props => props.theme.colors.button.primaryDark};
-    color: ${props => props.theme.colors.button.white};
+    background-color: ${props =>
+      props.disabled ? null : props.theme.colors.button.primaryDark};
+    border-color: ${props =>
+      props.disabled ? null : props.theme.colors.button.primaryDark};
+    color: ${props =>
+      props.disabled ? null : props.theme.colors.button.white};
   }
 `
 
@@ -49,8 +57,10 @@ export const ButtonOutline = styled(Button)`
   color: ${props => props.theme.colors.button.primary};
 
   &:hover {
-    border-color: ${props => props.theme.colors.button.primary};
-    color: ${props => props.theme.colors.button.primaryDark};
+    border-color: ${props =>
+      props.disabled ? null : props.theme.colors.button.primary};
+    color: ${props =>
+      props.disabled ? null : props.theme.colors.button.primaryDark};
   }
 `
 
@@ -60,8 +70,10 @@ export const ButtonMinimal = styled(Button)`
   color: ${props => props.theme.colors.button.primary};
 
   &:hover {
-    border-color: ${props => props.theme.colors.button.white};
-    color: ${props => props.theme.colors.button.primaryDark};
+    border-color: ${props =>
+      props.disabled ? null : props.theme.colors.button.white};
+    color: ${props =>
+      props.disabled ? null : props.theme.colors.button.primaryDark};
   }
 `
 export const ButtonDanger = styled(Button)`
@@ -70,9 +82,13 @@ export const ButtonDanger = styled(Button)`
   color: ${props => props.theme.colors.button.white};
 
   &:hover {
-    background-color: ${props => props.theme.colors.button.dangerDark};
-    border-color: ${props => props.theme.colors.button.dangerDark};
-    color: ${props => props.theme.colors.button.white};
+    background-color: ${props =>
+      props.disabled ? null : props.theme.colors.button.dangerDark};
+    border-color: ${props =>
+      props.disabled ? null : props.theme.colors.button.dangerDark};
+    color: ${props =>
+      props.disabled ? null : props.theme.colors.button.white};
   }
 `
+
 export default Button

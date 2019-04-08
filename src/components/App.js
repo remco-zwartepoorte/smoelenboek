@@ -3,7 +3,7 @@ import {HashRouter as Router, Route, Switch} from 'react-router-dom'
 import styled, {ThemeProvider} from 'styled-components'
 
 import ScrollToTop from './ScrollToTop'
-import GlobalStyle from './Global'
+import GlobalStyle from './globalStyle'
 import theme from './theme'
 import samplePeople from '../utils/sample-data'
 import '../fonts/gilroy.css'

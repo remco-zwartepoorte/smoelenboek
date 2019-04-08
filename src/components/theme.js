@@ -42,6 +42,7 @@ const polygons = {
 const radius = '3px'
 
 const theme = {
+  name: 'DEFAULT',
   breakpoints,
   colors,
   polygons,
